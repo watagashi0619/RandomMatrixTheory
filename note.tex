@@ -1,0 +1,702 @@
+\documentclass{ltjsarticle}
+\usepackage[
+    pdfencoding=auto,
+    psdextra,
+    pdfusetitle,
+    hidelinks,
+    pdfversion=1.7,
+    pdfa
+]{hyperref}%ハイパーリンク
+\usepackage{hyperxmp}
+\hypersetup{
+    pdfsubject={解析学特論Ⅱの講義に基づいてまとめたもの},
+    pdfkeywords={ランダム行列},
+    pdfapart=3, % PDF/A のバージョン。最新は3だが、実際は2で問題ないかも
+    pdfaconformance=u, % PDF/A 内のLevel区分。b(basic), a(accesible), u(unicode)が存在
+    colorlinks=true,
+    linkcolor=red,
+}
+% カラープロファイルを埋め込んで、出力インテントの設定をしているっぽい（https://tex.stackexchange.com/a/534201）
+\immediate\pdfobj stream attr{/N 3} file{sRGB.icc}
+\pdfextension catalog{
+    /OutputIntents [
+        <<
+            /Type /OutputIntent
+            /S /GTS_PDFA1
+            /DestOutputProfile \the\pdflastobj\space 0 R
+            /OutputConditionIdentifier (sRGB)
+            /Info (sRGB)
+        >>
+    ]
+}
+%\pdfvariable omitcidset=1 %デフォルト以外のフォントを読み込む場合、この一行が必要になる場合がある
+%\usepackage[1.7]{bxpdfver}
+\usepackage{amsthm}%定理環境
+\usepackage[hiragino-pron]{luatexja-preset}
+\usepackage{newtxtext,newtxmath}%times font setting
+\usepackage{amsmath,amsfonts}%数式font setting
+\usepackage{mathrsfs}%花文字
+\usepackage{pxrubrica}%ルビ
+%\usepackage{lmodern}%font setting
+\usepackage{mathtools}%数式の相互参照部分にのみ式番号をふる
+\mathtoolsset{showonlyrefs,showmanualtags}
+\usepackage{empheq}%方程式
+\usepackage{physics}%物理系
+\usepackage{bm}%vector
+\usepackage{mleftright}%カッコ
+\usepackage{framed}%フレーム
+\usepackage{color}%文字に色付け
+\usepackage{ulem}%取り消し線
+\usepackage{bbm}%指示関数とかはこっちで出す
+%\usepackage[right]{showlabels}%数式番号を左に表示
+\usepackage{booktabs}%表の上線\toprule中線\midrule下線\bottomrule
+%\usepackage{url}%参考文献とかでurlをかくとき
+%\usepackage{comment}%長文コメント
+%\usepackage{lscape}%ページを横向きにする
+\usepackage{ascmac}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems,skins}%数式を「デコ」る
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usetikzlibrary{cd}%矢印の図
+\usetikzlibrary{decorations,decorations.pathreplacing}%tikzでデコる
+% patternsの斜線設定
+\pgfdeclarepatternformonly{south west lines}{\pgfqpoint{-0pt}{-0pt}}{\pgfqpoint{3pt}{3pt}}{\pgfqpoint{3pt}{3pt}}{
+    \pgfsetlinewidth{0.4pt}
+    \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+    \pgfpathlineto{\pgfqpoint{3pt}{3pt}}
+    \pgfpathmoveto{\pgfqpoint{2.8pt}{-.2pt}}
+    \pgfpathlineto{\pgfqpoint{3.2pt}{.2pt}}
+    \pgfpathmoveto{\pgfqpoint{-.2pt}{2.8pt}}
+    \pgfpathlineto{\pgfqpoint{.2pt}{3.2pt}}
+    \pgfusepath{stroke}
+}
+%subsubsubsection定義 paragraphも用いる場合は注意
+\makeatletter
+    \newcommand{\subsubsubsection}{\@startsection{paragraph}{4}{\z@}%
+        {1.0\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+        {.1\Cvs \@plus.3\Cdp}%
+        {\reset@font\sffamily\normalsize}
+    }
+\makeatother
+
+\setcounter{secnumdepth}{3}%セクションの深さレベル
+
+%physicsでrotもcurlで使う
+\newcommand{\rot}{\curl}
+
+%amsthm style1,2
+%style1 連番
+\newtheoremstyle{mystyle1}% Name
+    {}% Space above
+    {}% Space below
+    {\normalfont}% Body font
+    {}% Indent amount
+    {\bfseries\sffamily}% Theorem head font
+    {\hspace{0.5em}}% Punctuation after theorem head
+    { }% Space after theorem head, ‘ ‘, or \newline
+    {\thmname{#1}\thmnumber{#2}\thmnote{（#3）\\}}% Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle1}
+\newtheorem{dfn}{定義}[section]
+\newtheorem{thm}[dfn]{定理}
+\newtheorem{axi}[dfn]{公理}
+\newtheorem{cor}[dfn]{系}
+\newtheorem{prop}[dfn]{命題}
+\newtheorem{lem}[dfn]{補題}
+\newtheorem{exs}[dfn]{例題}
+
+%style2 連番なし
+\newtheoremstyle{mystyle2}% Name
+    {}% Space above
+    {}% Space below
+    {\normalfont}% Body font
+    {}% Indent amount
+    {\bfseries\sffamily}% Theorem head font
+    {\hspace{0.5em}}% Punctuation after theorem head
+    { }% Space after theorem head, ‘ ‘, or \newline
+    {\thmname{#1}\thmnote{（#3）\\}}% Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle2}
+\newtheorem{dfn*}{定義}
+\newtheorem{thm*}{定理}
+\newtheorem{prop*}{命題}
+\newtheorem{ex}{例題}
+\newtheorem{example}{例}
+\newtheorem{qes}{問題}
+\newtheorem{note*}{注意}
+\newtheorem{ans}{解答}
+\newtheorem{note}{注意}
+\newtheorem{lem*}{補題}
+
+\newtheoremstyle{mystyle3}% Name
+    {}% Space above
+    {}% Space below
+    {\normalfont}% Body font
+    {}% Indent amount
+    {\bfseries\sffamily}% Theorem head font
+    {\hspace{0.5em}}% Punctuation after theorem head
+    { }% Space after theorem head, ‘ ‘, or \newline
+    {\thmname{#1}\thmnumber{#2}}% Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle3}
+\newtheorem{qes*}{問題}
+
+%proofの後ろに黒四角をつける
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont
+  \topsep6\p@\@plus6\p@ \trivlist
+  \item[\hskip\labelsep{\bfseries\sffamily #1}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\renewcommand\proofname{証明}
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+\makeatother
+
+%ansの後ろに黒四角をつける
+\makeatletter
+\renewenvironment{ans}[1][解答]{\par
+  \pushQED{\qed}%
+  \normalfont
+  \topsep6\p@\@plus6\p@ \trivlist
+  \item[\hskip\labelsep{\bfseries\sffamily #1}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\renewcommand{\labelenumi}{\ensuremath{\blacksquare}}
+\makeatother
+
+%方程式番号にセクション番号を入れる
+\makeatletter
+\@addtoreset{equation}{section}
+\def\theequation{\thesection.\arabic{equation}}% renewcommand でもOK
+\makeatother
+
+% 図番号にセクション番号入れる
+\makeatletter
+\renewcommand{\thefigure}{
+\arabic{figure}}
+\@addtoreset{figure}{section}
+\makeatother
+
+%\newcommand\range{\operatorname{range}}
+%\newcommand\sgn{\operatorname{sgn}}
+
+%\renewcommand{\thepart}{\arabic{part}}
+%\renewcommand{\thenote}{}
+%\renewcommand{\thelem}{}
+
+%\makeatletter
+%\@addtoreset{section}{part}
+%\makeatother
+
+%\makeatletter
+%\def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
+%\makeatother
+
+%\setcounter{tocdepth}{1}%目次をsectionまでの表示にする
+
+\renewcommand{\labelenumi}{(\arabic{enumi})}%enumerateのデフォルトを(1)などにする
+
+%その他文字設定
+\newcommand{\defLeftrightarrow}{\overset{\text{def}}{\iff}}
+
+\title{解析学特論Ⅱ 講義ノート}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\section{Gaussian Unitary Ensemble}
+
+$V$は$\mathbb{R}$上の有限次元ベクトル空間であり，各要素は$r\in\mathbb{R}$として$\mathcal{N}(0,r)$に従う実数確率変数であるとする．ただし，$r=0$の場合も確率変数$0$とみなして許容する．
+
+\begin{example}
+    $g_1,\ldots,g_d\overset{\textrm{i.i.d.}}{\sim}\mathcal{N}(0,1)$としたとき，$V=\{\sum_{i=1}^d \lambda_ig_i\mid (\lambda_1,\ldots,\lambda_d)\in\mathbb{R}^d\}$はgaussian space．実際，すべてのgaussian spaceはこのように表現できる．
+\end{example}
+
+\subsection{Wick's Theorem}
+
+$g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを考えたい．$E[g_1\cdots g_n]$が有限であることはHölderの不等式から導ける．また，$n$が奇数の場合にこの値が0となることは容易にわかる．
+
+\begin{dfn}[pair partition $\mathcal{P}_2(n)$]\
+    \vspace{-\baselineskip}
+    \begin{enumerate}
+        \item $n\in\mathcal{N}$に対して$[n]=\{1,\ldots,n\}$と表記する．
+        \item $[n]$のpairing $\pi$とは，$[n]$を被りのないように2つずつ選んだ数のペアに分割することである．すなわち，$\pi=\{V_1,\ldots,V_k\}$は$i,j=1,\ldots,k$（ただし$i\neq j$）に対して
+              \begin{itemize}
+                  \item $V_i\subset [n]$
+                  \item $|V_i|=2$
+                  \item $V_i\cap V_j=\emptyset$
+                  \item $\bigcup_{i=1}^k V_i=[n]$
+              \end{itemize}
+              をみたす．なお，必然的に$k=n/2$となる．
+        \item $[n]$のpair partition $\mathcal{P}_2(n)$は
+              \begin{equation}
+                  \mathcal{P}_2(n)=\{\pi\mid\pi\textrm{\,is\,pairing\,of\,}[n]\}
+              \end{equation}
+              で定義される．
+    \end{enumerate}
+\end{dfn}
+
+\begin{prop}
+    \begin{equation}
+        \#\mathcal{P}_2(n)=\begin{cases}
+            0       & (nは奇数) \\
+            (n-1)!! & (nは偶数)
+        \end{cases}
+    \end{equation}
+\end{prop}
+
+\begin{proof}
+    $\mathcal{P}_2(n)$のうちで，まず$1$とのペアを考えると，その選び方は$n-1$通りある．このペアを取り除くと，pairingを作る数は$n-2$個残っている．したがって$\#\mathcal{P}_2(n)=(n-1)\cdot\#\mathcal{P}_2(n-2)$が成り立つ．また，$\#\mathcal{P}_2(1)=0$，$\#\mathcal{P}_2(2)=1$であることと合わせれば，証明は終了する．
+\end{proof}
+
+\begin{example}
+    $\mathcal{P}_2(2)=\{\{\{1,2\}\}\}$，$\mathcal{P}_2(4)=\{\{\{1,2\},\{3,4\}\},\{\{1,3\},\{2,4\}\},\{\{1,4\},\{2,3\}\}\}$．
+\end{example}
+
+\begin{dfn}
+    $E_\pi [X_1,\ldots,X_n]=\prod_{(i,j)\in\pi}E[X_iX_j]$
+\end{dfn}
+
+\begin{example}
+    \begin{equation}
+        \begin{split}
+            E[X_1X_2X_3X_4]&=E_{\{\{1,2\},\{3,4\}\}}[X_1,X_2,X_3,X_4]+E_{\{\{1,3\},\{2,4\}\}}[X_1,X_2,X_3,X_4]+E_{\{\{1,4\},\{2,3\}\}}[X_1,X_2,X_3,X_4] \\
+            &=E[X_1X_2]E[X_3X_4]+E[X_1X_3]E[X_2X_4]+E[X_1X_4]E[X_2X_3]
+        \end{split}
+    \end{equation}
+\end{example}
+
+\begin{lem}
+    $V$を$\mathbb{R}$上のベクトル空間として，$n$重線形対称関数$\varphi:V^n\to\mathbb{R}$を考える．このとき，$\varphi(x,\cdots,x)=\phi(x)$とおくと
+    \begin{equation}
+        \varphi(x_1,\ldots,x_n)=\frac{1}{n!}\sum_{k=1}^n\sum_{1\leq j_1<\cdots<j_k\leq n}(-1)^{n-k}\phi(x_{j_1}+\cdots+x_{j_k})
+    \end{equation}
+    が成り立つ．
+    %\url{https://math.stackexchange.com/questions/481167/polarization-formula}
+\end{lem}
+
+\begin{note*}
+    上の補題において対称とは，$\sigma\in S_n$に対して$\varphi(x_1,\ldots,x_n)=\varphi(x_{\sigma(1)},\ldots,x_{\sigma(n)})$が成り立つことである．
+\end{note*}
+
+\begin{note*}
+    この等式は，偏極恒等式の一般化である．$n=2$の場合は偏極恒等式
+    \begin{equation}
+        \varphi(x,y)=\frac{1}{2}(\phi(x+y)-\phi(x)-\phi(y))=\frac{1}{4}(\phi(x+y)-\phi(x-y))
+    \end{equation}
+    となる．
+\end{note*}
+
+\begin{proof}
+    \begin{equation}
+        \begin{split}
+            \sum_{k=1}^n\sum_{1\leq j_1<\cdots<j_k\leq n}(-1)^k\phi(x_{j_1}+\cdots+x_{j_k})
+            &=\sum_{A\subset[n]}(-1)^{|A|}\phi\mleft(\sum_{a\in A}x_a\mright)\\
+            &=\sum_{A\subset [n]}(-1)^{|A|}\sum_{f:[n]\to A}\varphi(x_{f(1)},\ldots,x_{f(n)}) \\
+            &=\sum_{f:[n]\to[n]}\varphi(x_{f(1)},\ldots,x_{f(n)})\sum_{\mathrm{Im}f\subset A\subset [n]}(-1)^{|A|} \\
+            &=\sum_{f\in S_n}\varphi(x_{f(1)},\ldots,x_{f(n)})(-1)^n \\
+            &=(-1)^nn!\varphi(x_1,\ldots,x_n)
+        \end{split}
+    \end{equation}
+    となることから従う．ただし，$\mathrm{Im}f\neq [n]$のときは
+    \begin{equation}
+        \begin{split}
+            \sum_{\mathrm{Im}f\subset A\subset [n]}(-1)^{|A|}
+            &=\sum_{j=0}^{n-|\mathrm{Im}f|}(-1)^j{}_{n-|\mathrm{Im}f|}C_j \\
+            &=(1+(-1))^{n-|\mathrm{Im}f|} \\
+            &=0
+        \end{split}
+    \end{equation}
+    となることを利用した．
+\end{proof}
+
+\begin{lem}
+    $n$重線形対称関数$\phi:V^n\to\mathbb{R}$に対して，任意の$x_1,\ldots,x_n\in V$に対して$\varphi(x_1,\ldots,x_n)=0$が成り立つことと，任意の$x\in V$に対して$\varphi(x,\ldots,x)=\phi(x)=0$が成り立つことは同値．
+\end{lem}
+
+\begin{proof}
+    十分性は容易．必要性は先の補題において右辺に現れる各$\phi(x_{j_1}+\cdots+x_{j_k})=0$となるときを考えることになるため，$\varphi(x_1,\ldots,x_n)=0$が成り立つ．
+\end{proof}
+
+\begin{thm}[Wick]
+    $g_1,\ldots,g_n\in V$に対して，以下が成り立つ：
+    \begin{equation}
+        E[g_1\cdots g_n]=\sum_{\pi\in\mathcal{P}_2(n)}E_\pi[g_1,\ldots,g_n]
+    \end{equation}
+\end{thm}
+
+\begin{proof}
+    まずは$g_1=\cdots=g_n=g\in V$のときに成り立つことを示す．いま，$V$の仮定から$E[g]=0$である．さらに，$E[g^2]=1$と置いても一般性は失われない（以下の議論で$g$を$g/E[g^2]$に置き換えればよい）．左辺は
+    \begin{equation}
+        \begin{split}
+            E[g_1\cdots g_n]
+            &=E[g^n] \\
+            &=\int_{-\infty}^\infty x^n\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx \\
+            &=(n-1)\int_{-\infty}^\infty x^{n-2}\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx \\
+            &=\cdots \\
+            &=(n-1)!!
+        \end{split}
+    \end{equation}
+    であり，右辺は
+    \begin{equation}
+        \begin{split}
+            \sum_{\pi\in\mathcal{P}_2(n)}E_\pi[g,\cdots,g]
+            &=(n-1)!!E[g^2]^{\frac{n}{2}} \\
+            &=(n-1)!!
+        \end{split}
+    \end{equation}
+    となることから成り立つ．いま，補題において$\varphi(g_1,\ldots,g_n)=E[g_1\cdots g_n]-\sum_{\pi\in\mathcal{P}_2(n)}E_\pi[g_1,\ldots,g_n]$と置けば，$\varphi(g,\ldots,g)=0$は確認したので$\varphi(g_1,\ldots,g_n)=0$も成り立つ．よって示された．
+\end{proof}
+
+\subsection{Gaussian Unitary Ensemble and Wiegner's Theorem}
+
+\begin{dfn}[Gaussian Unitary Ensemble]
+    Gaussian Unitary Ensembleとは，行列$H=(h_{ij})_{i,j=1}^n$であって，すべての$i,j=1,\ldots,n$に対して$h_{ij}=\overline{h}_{ji}$を満たし，$\{h_{ij}\mid i\geq j\}$は独立同分布で$\mathcal{N}(0,1/n)$に従うようなもののことである．$H$のガウス測度（すなわち，$H$のすべての要素の同時分布）は
+    \begin{equation}
+        d\mu(H)=\frac{1}{Z}e^{-\frac{n}{2}\mathrm{tr}H^2}dH
+    \end{equation}
+    となる．ただし$Z=2^{\frac{n}{2}}\pi^{\frac{1}{2}n^2}$，$dH=\prod_{i\geq j}dh_{ij}$．
+\end{dfn}
+
+\begin{example}
+    ランダム行列$X$は$\mathrm{GUE}(n)$であるとする．このとき，$E[X_{ij}X_{kl}]=\delta_{il}\delta_{jk}/n$が成り立つ．また，Wickの定理より$E[X_{i_1j_1}\cdots X_{i_kj_k}]=\sum_{\pi\in\mathcal{P}_2(k)}n^{-k/2}\delta_{\pi_{ij}}$
+\end{example}
+
+\begin{dfn}[互換の数]
+    $k$次の対称群の元$\sigma\in S_k$に対して$|\sigma|$を互換の数として定める．
+\end{dfn}
+
+\begin{dfn}[サイクルの数]
+    $k$次の対称群の元$\sigma\in S_k$に対して$\#(\sigma)$を，巡回置換の積に分解したときのサイクルの数として定める．
+\end{dfn}
+
+\begin{prop}
+    \
+    \begin{enumerate}
+        \item $\sigma,\tau \in S_k$に対して，対応$(\sigma,\tau)\mapsto |\sigma\tau^{-1}|$を考えると，これは$S_k$の距離となる．すなわち，この対応を$d$で表すと以下の3つが成り立つ：
+              \begin{itemize}
+                  \item $d(\sigma,\tau)=0\Leftrightarrow \tau=\sigma$
+                  \item $d(\sigma_1,\sigma_2)+d(\sigma_2,\sigma_3)\geq d(\sigma_1,\sigma_3)$
+                  \item $d(\sigma_1,\sigma_2)=d(\sigma_2,\sigma_1)$
+              \end{itemize}
+        \item $\sigma\in S_k$について，$|\sigma|+\#(\sigma)=k$が成り立つ．
+    \end{enumerate}
+\end{prop}
+
+\begin{example}
+    以下のいずれの場合でも$|\sigma|+\#(\sigma)=k$が成立していることが確認できる．
+    \begin{itemize}
+        \item $\sigma=e\in S_k$を考えると，$|\sigma|=0$．$\sigma=(1)(2)\cdots(k)$より$\#(e)=k$．
+        \item $\sigma=(1\,2)\in S_k$を考えると，$|\sigma|=1$，$\sigma=(1\,2)(3)\cdots(k)$より$\#(\sigma)=k-1$．
+        \item $\sigma=(1\,2\,\cdots\,k)\in S_k$を考えると，$|\sigma|=|(1\,2)\cdots(k-1\,k)|=k-1$．$\#(\sigma)=1$．
+    \end{itemize}
+\end{example}
+
+\begin{dfn}[normalized trace]
+    $n$次元正方行列$X$に対して$\mathrm{tr}X=\frac{1}{n}\mathrm{Tr}X$と定める．
+\end{dfn}
+
+\begin{thm}
+    $X$を$\mathrm{GUE}(n)$とする．このとき，$\gamma=(1\,2\,\cdots\,k)\in S_k$として以下が成り立つ：
+    \begin{equation}
+        E[\mathrm{tr}X^k]=\sum_{\pi\in\mathcal{P}_2(k)}n^{-1-\frac{k}{2}+\#(\gamma\pi)}
+    \end{equation}
+\end{thm}
+
+\begin{proof}
+    \begin{equation}
+        E[\mathrm{tr}X^k]=\frac{1}{n}\sum_{1\leq i_1,i_2,\ldots,i_k\leq n}E[X_{i_1i_2}X_{i_2i_3}\cdots X_{i_ki_1}]
+    \end{equation}
+    ここで，Wickの定理より
+    \begin{equation}
+        \begin{split}
+            E[X_{i_1i_2}X_{i_2i_3}\cdots X_{i_ki_1}]
+            &=\sum_{\pi\in\mathcal{P}_2(k)}E_\pi[X_{i_1i_2},X_{i_2i_3},\ldots, X_{i_ki_1}] \\
+            &=\sum_{\pi\in\mathcal{P}_2(k)}\prod_{(a,b)\in\pi}E[X_{i_ai_{a+1}}X_{i_bi_{b+1}}]
+        \end{split}
+    \end{equation}
+    ただし$i_{k+1}=i_1$とする．ここで
+    \begin{equation}
+        E[X_{i_ai_{a+1}}X_{i_bi_{b+1}}]=\frac{1}{n}\delta_{i_ai_{a+1}}\delta_{i_bi_{b+1}}
+    \end{equation}
+    であることと，$(a,b)\in\pi$は$\pi(a)=b,\pi(b)=a$であるということなので
+    \begin{equation}
+        \prod_{(a,b)\in\pi}\delta_{i_ai_{a+1}}\delta_{i_bi_{b+1}}=\prod_{a=1}^k\delta_{i_ai_{\pi(a)+1}}
+    \end{equation}
+    となる．ここでshift permutation $\gamma\in S_k$（すなわち$\gamma=(1\,2\,\cdots\,k),\gamma(a)=a+1\mod k$）を定めると結局
+    \begin{equation}
+        \begin{split}
+            E[\mathrm{tr}X^k]=\frac{1}{n}\frac{1}{n^{k/2}}\sum_{\pi\in\mathcal{P}_2(k)}\sum_{1\leq i_1,i_2,\ldots,i_k\leq n}\prod_{a=1}^k\delta_{i_ai_{\gamma\pi(a)}}
+        \end{split}
+    \end{equation}
+    となる．ここで$\prod_{a=1}^k\delta_{i_ai_{\gamma\pi(a)}}\neq 0$であるのは$\gamma\pi$のサイクル上で一定となっていることである．したがって%どういうこと？
+    \begin{equation}
+        E[\mathrm{tr}X^k]=\frac{1}{n^{k/2+1}}\sum_{\pi\in\mathcal{P}_2(k)}n^{\#(\gamma\pi)}
+    \end{equation}
+\end{proof}
+
+上の定理の別の表記を与える．
+
+\begin{thm}
+    $X$を$\mathrm{GUE}(n)$とする．このとき，$\gamma=(1\,2\,\cdots\,k)\in S_k$として
+    \begin{equation}
+        E[\mathrm{tr}X^k]=\sum_{\pi\in\mathcal{P}_2(k)}n^{|\gamma|-|\pi|-|\gamma\pi|}
+    \end{equation}
+    が成り立つ．
+\end{thm}
+
+\begin{proof}
+    $|\gamma|=k-1$，$|\pi|=k/2$，$|\gamma\pi|=k-\#(\gamma\pi)$であることから確認できる．
+\end{proof}
+
+\begin{example}
+    $X$が$\mathrm{GUE}(n)$であるとき，$E[\mathrm{tr}X^4]=2+\frac{1}{n}$
+\end{example}
+
+\begin{proof}
+    定義とWickの定理から計算すれば
+    \begin{equation}
+        \begin{split}
+            E[\mathrm{tr}X^4]
+            &=\frac{1}{n^3}\sum_{i,j,k,l=1}^nE[X_{ij}X_{jk}X_{kl}X_{li}] \\
+            &=\frac{1}{n^3}\sum_{i,j,k,l=1}^n(E_{\pi_1}+E_{\pi_2}+E_{\pi_3})[X_{ij}X_{jk}X_{kl}X_{li}]
+        \end{split}
+    \end{equation}
+
+    各項について
+    \begin{equation}
+        \begin{split}
+            \sum_{i,j,k,l=1}^n E_{\pi_2}[X_{ij},X_{jk},X_{kl},X_{li}]
+            &=\sum_{i,j,k,l=1}^n E[X_{ij}X_{jk}]E[X_{kl}X_{li}] \\
+            &=\sum_{i,j,k,l=1}^n \delta_{ik}\delta_{jj}\delta_{ki}\delta_{ll} \\
+            &=n^3
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \sum_{i,j,k,l=1}^n E_{\pi_1}[X_{ij},X_{jk},X_{kl},X_{li}]
+            &=\sum_{i,j,k,l=1}^n E[X_{ij}X_{kl}]E[X_{jk}X_{li}] \\
+            &=\sum_{i,j,k,l=1}^n \delta_{il}\delta_{jk}\delta_{ji}\delta_{kl} \\
+            &=n
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \sum_{i,j,k,l=1}^n E_{\pi_3}[X_{ij},X_{jk},X_{kl},X_{li}]
+            &=\sum_{i,j,k,l=1}^n E[X_{ij}X_{li}]E[X_{jk}X_{kl}] \\
+            &=\sum_{i,j,k,l=1}^n \delta_{ii}\delta_{jl}\delta_{jl}\delta_{kk} \\
+            &=n^3
+        \end{split}
+    \end{equation}
+    となることから従う．
+
+    また，先の定理を使えば，とられる和の中身が以下の表のようになることからもわかる．
+    \begin{table}[hbtp]
+        \centering
+        \begin{tabular}{cccc}
+            \hline
+            $\pi$          & $\gamma\pi$    & $\#(\gamma\pi)-3$ & 貢献度   \\
+            \hline \hline
+            $(1\,2)(3\,4)$ & $(1\,3)(2)(4)$ & $0$               & $n^0=1$  \\
+            $(1\,3)(2\,4)$ & $(1\,4\,3\,2)$ & $-2$              & $n^{-2}$ \\
+            $(1\,4)(2\,3)$ & $(1)(2\,4)(3)$ & $0$               & $n^0=1$  \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{proof}
+
+\begin{dfn}[non-crossing]
+    $\pi\in\mathcal{P}_2(m)$がnon-crossingとは，すべての$\pi$の要素$(i,k)$と$(j,l)$について，$i<j<k<l$とはならないことである．non-crossingな集合のことを
+    \begin{equation}
+        \mathcal{NC}_2(m)=\{\pi\in\mathcal{P}_2(m)\mid\pi\,\textrm{ is\, non-crossing}\}
+    \end{equation}
+    と表記する．
+\end{dfn}
+
+\begin{thm}[Biane's lemma]
+    $\pi\in\mathcal{P}_2(k)\subset S_k$とし，$\gamma=(1\,2\,\cdots\,k)\in S_k$とする．
+    \begin{enumerate}
+        \item $\#(\gamma\pi)\leq\frac{k}{2}+1$．
+        \item $\#(\gamma\pi)=\frac{k}{2}+1$であることは$\pi\in\mathcal{NC}_2(k)$であるための必要十分条件である．
+    \end{enumerate}
+    \begin{comment}
+    別の書き方をすれば
+    \begin{enumerate}
+        \item $|\gamma|\leq |\pi|+|\gamma\pi|$．
+        \item $|\gamma|=|\pi|+|\gamma\pi|$であることは，$\pi\in\mathcal{NC}_2(k)$であるための必要十分条件である．
+    \end{enumerate}
+    \end{comment}
+\end{thm}
+
+\begin{proof}
+    $\tau=(i\,i+1)\in\pi$であったとすれば，$\gamma\pi(i+1)=i+1$，$\gamma\pi(i)=i+2$となる．したがって，$\gamma\pi$はサイクル$(i+1)$と$(\cdots\,i\,i+2\,\cdots)$を含む．このとき$i,i+1$を取り除く操作を行う．その場合の$\pi$と$\gamma$を改めて$\pi_2$と$\gamma_2$として考え，再び同様にして取り除く操作を繰り返すことを考える．
+
+    もし$\pi\in\mathcal{NC}_2(k)$であれば，上の操作は$\pi_{k/2-1}=(1\,2)$，$\gamma_{k/2-1}=(1\,2)$，$\gamma_{k/2-1}\pi_{k/2-1}=(1)(2)$，$\#(\gamma_{k/2-1}\pi_{k/2-1})=2$となるまで繰り返すことができる．これは最初の状態から上の操作を$k/2-1$回繰り返すことで得られる状態である．よって$\#(\gamma\pi)=(k/2-1)+\#(\gamma_{k/2-1}\pi_{k/2-1})=k/2+1$となる．
+
+    一方で，$\pi\notin\mathcal{NC}_2(k)$であれば，上の操作を繰り返し適用し，これ以上操作ができない状態に到達したとして，そのときの$\pi_i\gamma_i$を考えれば，$\pi_i\gamma_i(j)=j$となるような$j$が存在しない．すなわち，$\pi_i\gamma_i$に存在するサイクルは必ず2つ以上の要素によって構成されていることになる．したがって，始めの状態に戻して考えることで$\#(\gamma\pi)\leq k/2<k/2+1$であることがわかる．
+\end{proof}
+
+
+\begin{lem}
+    \begin{equation}
+        \#\mathcal{NC}_2(n)=
+        \begin{cases}
+            0                                      & (nは奇数) \\
+            \mathrm{Cat}\mleft(\frac{n}{2}\mright) & (nは偶数)
+        \end{cases}
+    \end{equation}
+    ただし$\mathrm{Cat}$はカタラン数であり，$\mathrm{Cat}(m)=\frac{(2m)!}{m!(m+1)!}$をみたす．
+\end{lem}
+
+\begin{proof}
+    いま，$k\in[2(n+1)]$を任意に選んで，$k$と$2(n+1)$を結ぶことを考えると，$[k-1]$と$[2n+1]/[k]\cong [2n-(k-1)]$の2つの集合についてnon-crossing pairを考えればよいことになるので，$n$が奇数のときは$\#\mathcal{NC}_2(n)=0$であることに注意して，全ての$k$について和をとり
+    \begin{equation}
+        \begin{split}
+            \#\mathcal{NC}_2(2(n+1))&=\sum_{k=1}^{2n+1}\#\mathcal{NC}_2(k-1)\#\mathcal{NC}_2(2n-(k-1)) \\
+            &=\sum_{k=0}^{n}\#\mathcal{NC}_2(2k)\#\mathcal{NC}_2(2(n-k))
+        \end{split}
+    \end{equation}
+    となる．ここで$c_{n}=\#\mathcal{NC}_2(2n)$とおくことで
+    \begin{equation}
+        c_{n+1}=\sum_{k=0}^n c_kc_{n-k}
+    \end{equation}
+    となる．この$c_n=\mathrm{Cat}(n)$である．実際，この数列の母関数$f(x)$を考えると
+    \begin{equation}
+        f(x)=\sum_{k=0}^\infty c_kx^k
+    \end{equation}
+    となるが，
+    \begin{equation}
+        \begin{split}
+            f(x)^2&=\sum_{n=0}^\infty\sum_{k=0}^n c_kc_{n-k} x^n \\
+            &=\sum_{n=0}^\infty c_{n+1}x^n \\
+            &=\frac{1}{x}(f(x)-1)
+        \end{split}
+    \end{equation}
+    であることより
+    \begin{equation}
+        f(x)^2x-f(x)+1=0
+    \end{equation}
+    を解いて（ただし$f(0)=c_0=1$で連続となるように符号をとる）
+    \begin{equation}
+        \begin{split}
+            f(x)&=\frac{1-\sqrt{1-4x}}{2x} \\
+            &=\sum_{n=1}^\infty \frac{(2n)!}{(n+1)!n!}x^n
+        \end{split}
+    \end{equation}
+    係数を比較することで$c_n=\frac{(2n)!}{(n+1)!n!}$を得る．
+
+\end{proof}
+
+$\lim_{n\to\infty}E[\mathrm{tr} X^k]$の値を考えたい．このとき，$\#(\gamma\pi)\leq \frac{k}{2}+1$であることから，$\pi\in\mathcal{P}_2(k)$が$\#(\gamma\pi)= \frac{k}{2}+1$をみたす場合だけ考えれば十分．なお，幾何的には$\pi\in\mathcal{P}_2(k)$が先の命題で定めた距離$d$に関する測地線上にあることを意味する．
+
+\begin{thm}
+    $X$は$\mathrm{GUE}(n)$であるとする．このとき，以下が成り立つ：
+    \begin{equation}
+        \lim_{n\to\infty}E[\mathrm{tr} X^k]=\#\mathcal{NC}_2(k)
+    \end{equation}
+\end{thm}
+
+\begin{dfn}[semicircular distribution]
+    \begin{equation}
+        ds(x)=\frac{1}{2\pi}\sqrt{4-x^2}\mathbbm{1}_{\{|x|\leq2\}}
+    \end{equation}
+\end{dfn}
+
+\begin{proof}
+    部分積分により示せる．
+\end{proof}
+
+\begin{example}[Haar測度]
+    $U\in\mathrm{SU}(2)$をとると，$\mathrm{Tr}U$は$s$による分布をもつ．
+\end{example}
+
+\begin{lem}
+    \begin{equation}
+        \int x^k ds(x)=\begin{cases}
+            0                         & (kは奇数) \\
+            \mathrm{Cat}(\frac{k}{2}) & (kは偶数)
+        \end{cases}
+    \end{equation}
+\end{lem}
+
+以上より
+
+\begin{thm}
+    $X^{(n)}$を$\mathrm{GUE}(n)$とする．任意の実数係数多項式$p\in\mathrm{R}[x]$に対して
+    \begin{equation}
+        \lim_{n\to\infty}E[\mathrm{tr}p(X^{(n)})]=\int p(x)ds(x)
+    \end{equation}
+    が成り立つ．
+\end{thm}
+
+\begin{thm}
+    任意の実数係数多項式$p\in\mathrm{R}[x]$に対して
+    \begin{equation}
+        \lim_{n\to\infty}E[\mathrm{tr}p(X^{(n)})]=\int p(x)ds(x)
+    \end{equation}
+    が成り立つ．
+\end{thm}
+
+
+\begin{dfn}
+    エルミート行列$Z$の標準化された固有値計数測度を，$Z$の固有値を$\lambda_1(Z)\geq\cdots\geq\lambda_n(Z)$と表記して
+    \begin{equation}
+        \mu_Z=\frac{1}{n}\sum_{i=1}^n\delta_{\lambda_i(Z)}
+    \end{equation}
+    で定める．また
+    \begin{equation}
+        \mu_Z([a,b])=\frac{1}{n}\#\{i\mid\lambda_i(Z)\in[a,b]\}
+    \end{equation}
+    である．
+\end{dfn}
+
+\begin{lem}
+    \begin{equation}
+        \mathrm{tr}p(Z)=\int p(t)d\mu_Z(t)
+    \end{equation}
+\end{lem}
+
+\begin{proof}
+    \begin{equation}
+        \begin{split}
+            \mathrm{tr}p(Z)&=\frac{1}{n}\sum_{i=1}^np(\lambda_i(Z))\\
+            &=\int_\mathbb{R}p(x)\frac{1}{n}\sum_{i=1}^n\delta_{\lambda_i(Z)}(x)
+        \end{split}
+    \end{equation}
+\end{proof}
+
+$Z$が決定論的なら$\mu_Z$は決定論的，ランダムならばランダム確率測度
+
+$\mu_X$がランダム確率測度ならば特に$E\mu_{X}$がwell-defined．これは任意の連続関数$f$に対して
+\begin{equation}
+    E\int f(x)d\mu_{X}(x)=\int f(x)dE\mu_{X}(x)
+\end{equation}
+である．これを用いると任意の実数係数多項式$p$に対して
+\begin{equation}
+    \int p(t)dE\mu_{X}(t)\overset{n\to\infty}{\longrightarrow}\int p(t)ds(t)
+\end{equation}
+であることが証明できる．さらに，
+\begin{thm}
+    任意の有界連続関数$f$に対して
+    \begin{equation}
+        \int f(t)dE\mu_{X}(t)\overset{n\to\infty}{\longrightarrow}\int f(t)ds(t)
+    \end{equation}
+    が成り立つ．
+\end{thm}
+このことは
+\begin{equation}
+    E\mu_{X}\overset{\mathrm{weak}}{\longrightarrow} s
+\end{equation}
+であることを主張している．
+
+\begin{thm}[Wiegner's theorem]
+    $X^{(n)}$を$\mathrm{GUE}(n)$とする．このとき
+    \begin{equation}
+        E\mu_{X^{(n)}}\overset{n\to\infty}{\longrightarrow} s\quad(\textrm{in\, weak})
+    \end{equation}
+\end{thm}
+
+\end{document}
