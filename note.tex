@@ -207,6 +207,10 @@
 \begin{document}
 \maketitle
 
+\begin{dfn}[Random Matrix]
+    ランダム行列$X=(x_{ij})_{i,j=1}^n$とは，各成分$x_{ij}$が確率変数であるような行列のことである．
+\end{dfn}
+
 \section{Gaussian Unitary Ensemble}
 
 $V$は$\mathbb{R}$上の有限次元ベクトル空間であり，各要素は$r\in\mathbb{R}$として$\mathcal{N}(0,r)$に従う実数確率変数であるとする．ただし，$r=0$の場合も確率変数$0$とみなして許容する．
@@ -622,7 +626,7 @@ $\lim_{n\to\infty}E[\mathrm{tr} X^k]$の値を考えたい．このとき，$\#(
     \end{equation}
 \end{lem}
 
-以上より
+以上より，次が成り立つ．
 
 \begin{thm}
     $X^{(n)}$を$\mathrm{GUE}(n)$とする．任意の実数係数多項式$p\in\mathrm{R}[x]$に対して
@@ -699,4 +703,101 @@ $\mu_X$がランダム確率測度ならば特に$E\mu_{X}$がwell-defined．こ
     \end{equation}
 \end{thm}
 
+\section{Preliminaries}
+
+\begin{dfn}[a.s. bounded]
+    実数値確率変数$X$がa.s. boundedとは，ある定数$M>0$が存在して，$P(|X|\leq M)=1$であることをいう．
+\end{dfn}
+
+\begin{dfn}[sub-gaussian]
+    実数値確率変数$X$がsub-gaussianであるとは，ある定数$C>0,c>0$が存在して，任意の$\lambda>0$に対して以下が成り立つことをいう：
+    \begin{equation}
+        P(|X|\geq\lambda)\leq C\exp(-c\lambda^2)
+    \end{equation}
+\end{dfn}
+
+\begin{example}
+    $X\sim\mathcal{N}(0,1)$のとき，ある定数$C>0,c>0$が存在して以下のようにできる：
+    \begin{equation}
+        P(|X|\geq\lambda)=2\int_\lambda^\infty \frac{1}{\sqrt{2\pi}}e^{-x^2/2}dx\leq Ce^{-c\lambda^2}
+    \end{equation}
+\end{example}
+
+\begin{dfn}[有限な$k$次モーメント]
+    確率変数$X$が有限の$k$次モーメントを持つとは，$E[|X|^k]<+\infty$であることをいう．
+\end{dfn}
+
+\begin{note*}
+    a.s. bounded $\Rightarrow$ sub-gaussian $\Rightarrow$ $k$次のモーメントが有限
+\end{note*}
+
+\begin{prop}
+    実数値確率変数$X$がsub-gaussianならば，$\lambda\in\mathbb{R}$に対して$E[e^{\lambda X}]<+\infty$である．\\（言い換えれば，$X$のラプラス変換は$\mathbb{R}$上で定義される．）
+\end{prop}
+
+\begin{prop}
+    実数値確率変数$X$に対して，以下は同値である：
+    \begin{enumerate}
+        \item $X$はsub-gaussianである．
+        \item ある$C>0,c>0$が存在して，任意の$t\geq 0$に対して$E[e^{tX}]\leq C\exp(ct^2)$．
+        \item ある$C>0$が存在して，任意の$k\geq 1$に対して$E[|X|^k]\leq(Ck)^{k/2}$．
+    \end{enumerate}
+\end{prop}
+
+\begin{prop}[Markovの不等式]
+    実数値確率変数$X$に対して
+    \begin{equation}
+        P(|X|\geq \lambda)\leq\frac{E[|X|]}{\lambda}
+    \end{equation}
+\end{prop}
+
+\begin{prop}[Jensenの不等式]
+    実数値確率変数$X$とconvexな関数$g$に対して
+    \begin{equation}
+        g(E[X])\leq E[g(X)]
+    \end{equation}
+\end{prop}
+
+\begin{proof}
+    $g$がconvexであるとき，$g(x)=\sup\{d(x):d(x)=ax+b \textrm{\,s.t.\,}\forall x\in\mathbb{R},d(x)\leq g(x)\}$と表現できる．このとき$E[d(X)]=d(E[X])$が成り立つ．いま，$y=E[X]$とし，$d(x)=ax+b$を$g(y)=ay+b$となるように定めると
+    \begin{equation}
+        \begin{split}
+            g(E[X])
+            &=g(y)\\
+            &=ay+b\\
+            &=d(y)\\
+            &=E[d(X)]\\
+            &\leq E[g(X)]\quad(\because d(X)\leq g(X))
+        \end{split}
+    \end{equation}
+    となる．
+\end{proof}
+
+\section{Concentration of Measure}
+
+\begin{thm}
+    $X_1,\ldots,X_n\overset{\mathrm{i.i.d.}}{\sim}\mathcal{N}(0,1)$とし，$F:\mathbb{R}^n\to\mathbb{R}$を1-Lipschitz関数とする．このとき，ある$C>0,c>0$が存在して，任意の$\lambda>0$に対して
+    \begin{equation}
+        P(|F(X)-E[F(X)]|\geq\lambda)\leq C\exp(-c\lambda^2)
+    \end{equation}
+\end{thm}
+
+\begin{note*}
+    この現象は測度の集中とよばれ，高次元多様体ではじめてみられた．
+\end{note*}
+
+\begin{example}
+    以下では$\langle\cdot,\cdot\rangle$は標準内積とする．球面$S^{n-1}\subset\mathbb{R}^n$上で$x,y$をランダム一様独立にとる．このとき，$\langle x,y\rangle\approx\frac{1}{\sqrt{n}}$であり，実際$E[|\langle x,y\rangle|^2]=\frac{1}{n}$である．
+
+    ここで，Markovの不等式より
+    \begin{equation}
+        \begin{split}
+            P\mleft(|\langle x,y\rangle|\geq \frac{t}{\sqrt{n}}\mright)&=P\mleft(|\langle x,y\rangle|^2\geq \frac{t^2}{n}\mright) \\
+            &\leq \frac{E[|\langle x,y\rangle|^2]}{t^2/n}\\
+            &\leq\frac{1}{t^2}
+        \end{split}
+    \end{equation}
+
+    これより，高次元で2つのベクトルをランダムにとれば，それらはa.s.でほぼ直交することがわかる．実際，これはsub-gaussianである．
+\end{example}
 \end{document}
