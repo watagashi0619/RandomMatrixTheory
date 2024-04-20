@@ -267,8 +267,8 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
 \begin{example}
     \begin{equation}
         \begin{split}
-            E[X_1X_2X_3X_4]&=E_{\{\{1,2\},\{3,4\}\}}[X_1,X_2,X_3,X_4]+E_{\{\{1,3\},\{2,4\}\}}[X_1,X_2,X_3,X_4]+E_{\{\{1,4\},\{2,3\}\}}[X_1,X_2,X_3,X_4] \\
-            &=E[X_1X_2]E[X_3X_4]+E[X_1X_3]E[X_2X_4]+E[X_1X_4]E[X_2X_3]
+            E[X_1X_2X_3X_4] & =E_{\{\{1,2\},\{3,4\}\}}[X_1,X_2,X_3,X_4]+E_{\{\{1,3\},\{2,4\}\}}[X_1,X_2,X_3,X_4]+E_{\{\{1,4\},\{2,3\}\}}[X_1,X_2,X_3,X_4] \\
+            & =E[X_1X_2]E[X_3X_4]+E[X_1X_3]E[X_2X_4]+E[X_1X_4]E[X_2X_3]
         \end{split}
     \end{equation}
 \end{example}
@@ -298,20 +298,20 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
     \begin{equation}
         \begin{split}
             \sum_{k=1}^n\sum_{1\leq j_1<\cdots<j_k\leq n}(-1)^k\phi(x_{j_1}+\cdots+x_{j_k})
-            &=\sum_{A\subset[n]}(-1)^{|A|}\phi\mleft(\sum_{a\in A}x_a\mright)\\
-            &=\sum_{A\subset [n]}(-1)^{|A|}\sum_{f:[n]\to A}\varphi(x_{f(1)},\ldots,x_{f(n)}) \\
-            &=\sum_{f:[n]\to[n]}\varphi(x_{f(1)},\ldots,x_{f(n)})\sum_{\mathrm{Im}f\subset A\subset [n]}(-1)^{|A|} \\
-            &=\sum_{f\in S_n}\varphi(x_{f(1)},\ldots,x_{f(n)})(-1)^n \\
-            &=(-1)^nn!\varphi(x_1,\ldots,x_n)
+            & =\sum_{A\subset[n]}(-1)^{|A|}\phi\mleft(\sum_{a\in A}x_a\mright)                                      \\
+            & =\sum_{A\subset [n]}(-1)^{|A|}\sum_{f:[n]\to A}\varphi(x_{f(1)},\ldots,x_{f(n)})                      \\
+            & =\sum_{f:[n]\to[n]}\varphi(x_{f(1)},\ldots,x_{f(n)})\sum_{\mathrm{Im}f\subset A\subset [n]}(-1)^{|A|} \\
+            & =\sum_{f\in S_n}\varphi(x_{f(1)},\ldots,x_{f(n)})(-1)^n                                               \\
+            & =(-1)^nn!\varphi(x_1,\ldots,x_n)
         \end{split}
     \end{equation}
     となることから従う．ただし，$\mathrm{Im}f\neq [n]$のときは
     \begin{equation}
         \begin{split}
             \sum_{\mathrm{Im}f\subset A\subset [n]}(-1)^{|A|}
-            &=\sum_{j=0}^{n-|\mathrm{Im}f|}(-1)^j{}_{n-|\mathrm{Im}f|}C_j \\
-            &=(1+(-1))^{n-|\mathrm{Im}f|} \\
-            &=0
+            & =\sum_{j=0}^{n-|\mathrm{Im}f|}(-1)^j{}_{n-|\mathrm{Im}f|}C_j \\
+            & =(1+(-1))^{n-|\mathrm{Im}f|}                                 \\
+            & =0
         \end{split}
     \end{equation}
     となることを利用した．
@@ -325,7 +325,7 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
     十分性は容易．必要性は先の補題において右辺に現れる各$\phi(x_{j_1}+\cdots+x_{j_k})=0$となるときを考えることになるため，$\varphi(x_1,\ldots,x_n)=0$が成り立つ．
 \end{proof}
 
-\begin{thm}[Wick]
+\begin{thm}[Wick's Theorem]
     $g_1,\ldots,g_n\in V$に対して，以下が成り立つ：
     \begin{equation}
         E[g_1\cdots g_n]=\sum_{\pi\in\mathcal{P}_2(n)}E_\pi[g_1,\ldots,g_n]
@@ -337,19 +337,19 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
     \begin{equation}
         \begin{split}
             E[g_1\cdots g_n]
-            &=E[g^n] \\
-            &=\int_{-\infty}^\infty x^n\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx \\
-            &=(n-1)\int_{-\infty}^\infty x^{n-2}\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx \\
-            &=\cdots \\
-            &=(n-1)!!
+            & =E[g^n]                                                                      \\
+            & =\int_{-\infty}^\infty x^n\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx          \\
+            & =(n-1)\int_{-\infty}^\infty x^{n-2}\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx \\
+            & =\cdots                                                                      \\
+            & =(n-1)!!
         \end{split}
     \end{equation}
     であり，右辺は
     \begin{equation}
         \begin{split}
             \sum_{\pi\in\mathcal{P}_2(n)}E_\pi[g,\cdots,g]
-            &=(n-1)!!E[g^2]^{\frac{n}{2}} \\
-            &=(n-1)!!
+            & =(n-1)!!E[g^2]^{\frac{n}{2}} \\
+            & =(n-1)!!
         \end{split}
     \end{equation}
     となることから成り立つ．いま，補題において$\varphi(g_1,\ldots,g_n)=E[g_1\cdots g_n]-\sum_{\pi\in\mathcal{P}_2(n)}E_\pi[g_1,\ldots,g_n]$と置けば，$\varphi(g,\ldots,g)=0$は確認したので$\varphi(g_1,\ldots,g_n)=0$も成り立つ．よって示された．
@@ -366,7 +366,7 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
 \end{dfn}
 
 \begin{example}
-    ランダム行列$X$は$\mathrm{GUE}(n)$であるとする．このとき，$E[X_{ij}X_{kl}]=\delta_{il}\delta_{jk}/n$が成り立つ．また，Wickの定理より$E[X_{i_1j_1}\cdots X_{i_kj_k}]=\sum_{\pi\in\mathcal{P}_2(k)}n^{-k/2}\delta_{\pi_{ij}}$
+    ランダム行列$X$は$\mathrm{GUE}(n)$であるとする．このとき，$E[X_{ij}X_{kl}]=\delta_{il}\delta_{jk}/n$が成り立つ．また，Wickの定理より$E[X_{i_1j_1}\cdots X_{i_kj_k}]=\sum_{\pi\in\mathcal{P}_2(k)}n^{-k/2}\delta_{\pi_{ij}}$．
 \end{example}
 
 \begin{dfn}[互換の数]
@@ -374,7 +374,7 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
 \end{dfn}
 
 \begin{dfn}[サイクルの数]
-    $k$次の対称群の元$\sigma\in S_k$に対して$\#(\sigma)$を，巡回置換の積に分解したときのサイクルの数として定める．
+    $k$次の対称群の元$\sigma\in S_k$に対して$\#(\sigma)$を，巡回置換の積に分解したときのサイクルの数として定める（$|\sigma|$ とは異なることに注意）．
 \end{dfn}
 
 \begin{prop}
@@ -382,7 +382,7 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
     \begin{enumerate}
         \item $\sigma,\tau \in S_k$に対して，対応$(\sigma,\tau)\mapsto |\sigma\tau^{-1}|$を考えると，これは$S_k$の距離となる．すなわち，この対応を$d$で表すと以下の3つが成り立つ：
               \begin{itemize}
-                  \item $d(\sigma,\tau)=0\Leftrightarrow \tau=\sigma$
+                  \item $d(\sigma,\tau)=0\leftrightarrow \tau=\sigma$
                   \item $d(\sigma_1,\sigma_2)+d(\sigma_2,\sigma_3)\geq d(\sigma_1,\sigma_3)$
                   \item $d(\sigma_1,\sigma_2)=d(\sigma_2,\sigma_1)$
               \end{itemize}
@@ -412,14 +412,18 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
 
 \begin{proof}
     \begin{equation}
+        \mathrm{tr}X^k=\frac{1}{n}\sum_{1\leq i_1,i_2,\ldots,i_k\leq n}X_{i_1i_2}X_{i_2i_3}\cdots X_{i_ki_1}
+    \end{equation}
+    より
+    \begin{equation}
         E[\mathrm{tr}X^k]=\frac{1}{n}\sum_{1\leq i_1,i_2,\ldots,i_k\leq n}E[X_{i_1i_2}X_{i_2i_3}\cdots X_{i_ki_1}]
     \end{equation}
     ここで，Wickの定理より
     \begin{equation}
         \begin{split}
             E[X_{i_1i_2}X_{i_2i_3}\cdots X_{i_ki_1}]
-            &=\sum_{\pi\in\mathcal{P}_2(k)}E_\pi[X_{i_1i_2},X_{i_2i_3},\ldots, X_{i_ki_1}] \\
-            &=\sum_{\pi\in\mathcal{P}_2(k)}\prod_{(a,b)\in\pi}E[X_{i_ai_{a+1}}X_{i_bi_{b+1}}]
+            & =\sum_{\pi\in\mathcal{P}_2(k)}E_\pi[X_{i_1i_2},X_{i_2i_3},\ldots, X_{i_ki_1}]    \\
+            & =\sum_{\pi\in\mathcal{P}_2(k)}\prod_{(a,b)\in\pi}E[X_{i_ai_{a+1}}X_{i_bi_{b+1}}]
         \end{split}
     \end{equation}
     ただし$i_{k+1}=i_1$とする．ここで
@@ -436,11 +440,23 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
             E[\mathrm{tr}X^k]=\frac{1}{n}\frac{1}{n^{k/2}}\sum_{\pi\in\mathcal{P}_2(k)}\sum_{1\leq i_1,i_2,\ldots,i_k\leq n}\prod_{a=1}^k\delta_{i_ai_{\gamma\pi(a)}}
         \end{split}
     \end{equation}
-    となる．ここで$\prod_{a=1}^k\delta_{i_ai_{\gamma\pi(a)}}\neq 0$であるのは$\gamma\pi$のサイクル上で一定となっていることである．したがって%どういうこと？
+    となる（$\mathcal{P}_2(k)=k/2$に注意）．ここで$\prod_{a=1}^k\delta_{i_ai_{\gamma\pi(a)}}\neq 0$であるのは$\gamma\pi$のサイクル上で一定となっていることである．したがって%どういうこと？
     \begin{equation}
         E[\mathrm{tr}X^k]=\frac{1}{n^{k/2+1}}\sum_{\pi\in\mathcal{P}_2(k)}n^{\#(\gamma\pi)}
     \end{equation}
 \end{proof}
+
+\begin{note*}
+    証明中の次の部分に対してグラフを利用した解釈を与えよう．
+    \begin{equation}
+        \begin{split}
+            E[X_{i_1i_2}X_{i_2i_3}\cdots X_{i_ki_1}]
+            & =\sum_{\pi\in\mathcal{P}_2(k)}E_\pi[X_{i_1i_2},X_{i_2i_3},\ldots, X_{i_ki_1}]    \\
+            & =\sum_{\pi\in\mathcal{P}_2(k)}\prod_{(a,b)\in\pi}E[X_{i_ai_{a+1}}X_{i_bi_{b+1}}]
+        \end{split}
+    \end{equation}
+    まず，$i_1\,i_2,\ldots,i_k$ の列について，この列の中に現れる重複なしindexの数を $w$ とする．もし，このindexの列の中に1つしか現れないindex $i_l$があれば，各確率変数は独立であるから，あるindex $i_m$に対して$E[X_{i_li_m}]=E[X_{i_li_m}]=0$が成り立つため，$E[X_{i_1i_2}X_{i_2i_3}\cdots X_{i_ki_1}]=0$となることがわかる．したがって，この計算の値に寄与するとき，各indexは$i_1\,i_2,\ldots,i_k$の列の中に少なくとも2回ずつ現れる．したがって $w\leq k/2+1$ であることがわかる．このとき，この $w$ を与えるような列$i_1\,i_2,\ldots,i_k$の与え方は $n(n-1)\cdots(n-w+1)\leq n^w\leq n^{k/2+1}$となる．したがって$E[X_{i_1i_2}X_{i_2i_3}\cdots X_{i_ki_1}]=O(n^{k/2+1})$であることがわかる．最後の段階には$n^{-k/2-1}$が掛けられるので，寄与として残る可能性があるのは $n^{k/2+1}$ のオーダーについてのみである．したがって，特に $w=k/2+1$ の場合を考える．いま，列$i_1\,i_2,\ldots,i_k$に対して，有向グラフ$G=(V,E)$ を $V$ は $i_1,\ldots,i_k$ から重複なくとった集合， $E=\{(i_1,i_2),\ldots,(i_k,i_1)\}$ とする．列$i_1\,i_2,\ldots,i_k$の長さは$k$なので，辺 の数を重複なく数えると $k/2$ 個となる．すなわち，各辺はちょうど2回通過する．言い換えれば任意の辺 $(i_j,i_{j+1})$ に対して $i_j=i_{l+1},i_{j+1}=i_l$ をみたすような辺 $(i_l,i_{l+1})$ が存在する．この性質をみたす任意のパスがnon-crossingなものとなっている．
+\end{note*}
 
 上の定理の別の表記を与える．
 
@@ -465,8 +481,8 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
     \begin{equation}
         \begin{split}
             E[\mathrm{tr}X^4]
-            &=\frac{1}{n^3}\sum_{i,j,k,l=1}^nE[X_{ij}X_{jk}X_{kl}X_{li}] \\
-            &=\frac{1}{n^3}\sum_{i,j,k,l=1}^n(E_{\pi_1}+E_{\pi_2}+E_{\pi_3})[X_{ij}X_{jk}X_{kl}X_{li}]
+            & =\frac{1}{n^3}\sum_{i,j,k,l=1}^nE[X_{ij}X_{jk}X_{kl}X_{li}]                               \\
+            & =\frac{1}{n^3}\sum_{i,j,k,l=1}^n(E_{\pi_1}+E_{\pi_2}+E_{\pi_3})[X_{ij}X_{jk}X_{kl}X_{li}]
         \end{split}
     \end{equation}
 
@@ -474,25 +490,25 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
     \begin{equation}
         \begin{split}
             \sum_{i,j,k,l=1}^n E_{\pi_2}[X_{ij},X_{jk},X_{kl},X_{li}]
-            &=\sum_{i,j,k,l=1}^n E[X_{ij}X_{jk}]E[X_{kl}X_{li}] \\
-            &=\sum_{i,j,k,l=1}^n \delta_{ik}\delta_{jj}\delta_{ki}\delta_{ll} \\
-            &=n^3
+            & =\sum_{i,j,k,l=1}^n E[X_{ij}X_{jk}]E[X_{kl}X_{li}]               \\
+            & =\sum_{i,j,k,l=1}^n \delta_{ik}\delta_{jj}\delta_{ki}\delta_{ll} \\
+            & =n^3
         \end{split}
     \end{equation}
     \begin{equation}
         \begin{split}
             \sum_{i,j,k,l=1}^n E_{\pi_1}[X_{ij},X_{jk},X_{kl},X_{li}]
-            &=\sum_{i,j,k,l=1}^n E[X_{ij}X_{kl}]E[X_{jk}X_{li}] \\
-            &=\sum_{i,j,k,l=1}^n \delta_{il}\delta_{jk}\delta_{ji}\delta_{kl} \\
-            &=n
+            & =\sum_{i,j,k,l=1}^n E[X_{ij}X_{kl}]E[X_{jk}X_{li}]               \\
+            & =\sum_{i,j,k,l=1}^n \delta_{il}\delta_{jk}\delta_{ji}\delta_{kl} \\
+            & =n
         \end{split}
     \end{equation}
     \begin{equation}
         \begin{split}
             \sum_{i,j,k,l=1}^n E_{\pi_3}[X_{ij},X_{jk},X_{kl},X_{li}]
-            &=\sum_{i,j,k,l=1}^n E[X_{ij}X_{li}]E[X_{jk}X_{kl}] \\
-            &=\sum_{i,j,k,l=1}^n \delta_{ii}\delta_{jl}\delta_{jl}\delta_{kk} \\
-            &=n^3
+            & =\sum_{i,j,k,l=1}^n E[X_{ij}X_{li}]E[X_{jk}X_{kl}]               \\
+            & =\sum_{i,j,k,l=1}^n \delta_{ii}\delta_{jl}\delta_{jl}\delta_{kk} \\
+            & =n^3
         \end{split}
     \end{equation}
     となることから従う．
@@ -544,7 +560,7 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
 \end{proof}
 
 
-\begin{lem}
+\begin{lem}\label{lem:1-16}
     \begin{equation}
         \#\mathcal{NC}_2(n)=
         \begin{cases}
@@ -559,8 +575,8 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
     いま，$k\in[2(n+1)]$を任意に選んで，$k$と$2(n+1)$を結ぶことを考えると，$[k-1]$と$[2n+1]/[k]\cong [2n-(k-1)]$の2つの集合についてnon-crossing pairを考えればよいことになるので，$n$が奇数のときは$\#\mathcal{NC}_2(n)=0$であることに注意して，全ての$k$について和をとり
     \begin{equation}
         \begin{split}
-            \#\mathcal{NC}_2(2(n+1))&=\sum_{k=1}^{2n+1}\#\mathcal{NC}_2(k-1)\#\mathcal{NC}_2(2n-(k-1)) \\
-            &=\sum_{k=0}^{n}\#\mathcal{NC}_2(2k)\#\mathcal{NC}_2(2(n-k))
+            \#\mathcal{NC}_2(2(n+1)) & =\sum_{k=1}^{2n+1}\#\mathcal{NC}_2(k-1)\#\mathcal{NC}_2(2n-(k-1)) \\
+            & =\sum_{k=0}^{n}\#\mathcal{NC}_2(2k)\#\mathcal{NC}_2(2(n-k))
         \end{split}
     \end{equation}
     となる．ここで$c_{n}=\#\mathcal{NC}_2(2n)$とおくことで
@@ -574,9 +590,9 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
     となるが，
     \begin{equation}
         \begin{split}
-            f(x)^2&=\sum_{n=0}^\infty\sum_{k=0}^n c_kc_{n-k} x^n \\
-            &=\sum_{n=0}^\infty c_{n+1}x^n \\
-            &=\frac{1}{x}(f(x)-1)
+            f(x)^2 & =\sum_{n=0}^\infty\sum_{k=0}^n c_kc_{n-k} x^n \\
+            & =\sum_{n=0}^\infty c_{n+1}x^n                 \\
+            & =\frac{1}{x}(f(x)-1)
         \end{split}
     \end{equation}
     であることより
@@ -586,8 +602,8 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
     を解いて（ただし$f(0)=c_0=1$で連続となるように符号をとる）
     \begin{equation}
         \begin{split}
-            f(x)&=\frac{1-\sqrt{1-4x}}{2x} \\
-            &=\sum_{n=1}^\infty \frac{(2n)!}{(n+1)!n!}x^n
+            f(x) & =\frac{1-\sqrt{1-4x}}{2x}                    \\
+            & =\sum_{n=1}^\infty \frac{(2n)!}{(n+1)!n!}x^n
         \end{split}
     \end{equation}
     係数を比較することで$c_n=\frac{(2n)!}{(n+1)!n!}$を得る．
@@ -596,7 +612,7 @@ $g_1,\ldots,g_n\in V$を考え，$E[g_1\cdots g_n]$の値がどうなるかを�
 
 $\lim_{n\to\infty}E[\mathrm{tr} X^k]$の値を考えたい．このとき，$\#(\gamma\pi)\leq \frac{k}{2}+1$であることから，$\pi\in\mathcal{P}_2(k)$が$\#(\gamma\pi)= \frac{k}{2}+1$をみたす場合だけ考えれば十分．なお，幾何的には$\pi\in\mathcal{P}_2(k)$が先の命題で定めた距離$d$に関する測地線上にあることを意味する．
 
-\begin{thm}
+\begin{thm}\label{thm:1-17}
     $X$は$\mathrm{GUE}(n)$であるとする．このとき，以下が成り立つ：
     \begin{equation}
         \lim_{n\to\infty}E[\mathrm{tr} X^k]=\#\mathcal{NC}_2(k)
@@ -609,15 +625,11 @@ $\lim_{n\to\infty}E[\mathrm{tr} X^k]$の値を考えたい．このとき，$\#(
     \end{equation}
 \end{dfn}
 
-\begin{proof}
-    部分積分により示せる．
-\end{proof}
-
-\begin{example}[Haar測度]
+\begin{example}[Haar measure]
     $U\in\mathrm{SU}(2)$をとると，$\mathrm{Tr}U$は$s$による分布をもつ．
 \end{example}
 
-\begin{lem}
+\begin{lem}\label{lem:1-19}
     \begin{equation}
         \int x^k ds(x)=\begin{cases}
             0                         & (kは奇数) \\
@@ -626,9 +638,13 @@ $\lim_{n\to\infty}E[\mathrm{tr} X^k]$の値を考えたい．このとき，$\#(
     \end{equation}
 \end{lem}
 
+\begin{proof}
+    部分積分により示せる．
+\end{proof}
+
 以上より，次が成り立つ．
 
-\begin{thm}
+\begin{thm}\label{thm:1-20}
     $X^{(n)}$を$\mathrm{GUE}(n)$とする．任意の実数係数多項式$p\in\mathrm{R}[x]$に対して
     \begin{equation}
         \lim_{n\to\infty}E[\mathrm{tr}p(X^{(n)})]=\int p(x)ds(x)
@@ -636,73 +652,253 @@ $\lim_{n\to\infty}E[\mathrm{tr} X^k]$の値を考えたい．このとき，$\#(
     が成り立つ．
 \end{thm}
 
-\begin{thm}
-    任意の実数係数多項式$p\in\mathrm{R}[x]$に対して
+\begin{proof}
+    補題\ref{lem:1-16}と定理\ref{thm:1-17}と補題\ref{lem:1-19}から，任意の実数係数多項式$p\in\mathrm{R}[x]$に対して
     \begin{equation}
-        \lim_{n\to\infty}E[\mathrm{tr}p(X^{(n)})]=\int p(x)ds(x)
+        \lim_{n\to\infty}E[\mathrm{tr}(X^{(n)})^k]=\int x^kds(x)
     \end{equation}
-    が成り立つ．
-\end{thm}
+    が成り立つことと，トレースの線形性から従う．
+\end{proof}
 
 
 \begin{dfn}
-    エルミート行列$Z$の標準化された固有値計数測度を，$Z$の固有値を$\lambda_1(Z)\geq\cdots\geq\lambda_n(Z)$と表記して
+    エルミート行列$Z^{(n)}$の標準化された固有値計数測度を，$Z^{(n)}$の固有値を$\lambda_1(Z^{(n)})\geq\cdots\geq\lambda_n(Z^{(n)})$と表記して
     \begin{equation}
-        \mu_Z=\frac{1}{n}\sum_{i=1}^n\delta_{\lambda_i(Z)}
+        \mu_{Z^{(n)}}=\frac{1}{n}\sum_{i=1}^n\delta_{\lambda_i(Z^{(n)})}
     \end{equation}
     で定める．また
     \begin{equation}
-        \mu_Z([a,b])=\frac{1}{n}\#\{i\mid\lambda_i(Z)\in[a,b]\}
+        \mu_{Z^{(n)}}([a,b])=\frac{1}{n}\#\{i\mid\lambda_i(Z)\in[a,b]\}
     \end{equation}
     である．
 \end{dfn}
 
 \begin{lem}
+    エルミート行列$Z^{(n)}$に対して，任意の実数係数多項式$p\in\mathrm{R}[x]$に対して
     \begin{equation}
-        \mathrm{tr}p(Z)=\int p(t)d\mu_Z(t)
+        \mathrm{tr}p(Z^{(n)})=\int p(t)d\mu_{Z^{(n)}}(t)
     \end{equation}
+    が成り立つ．
 \end{lem}
 
 \begin{proof}
     \begin{equation}
         \begin{split}
-            \mathrm{tr}p(Z)&=\frac{1}{n}\sum_{i=1}^np(\lambda_i(Z))\\
-            &=\int_\mathbb{R}p(x)\frac{1}{n}\sum_{i=1}^n\delta_{\lambda_i(Z)}(x)
+            \mathrm{tr}p(Z^{(n)}) & =\frac{1}{n}\sum_{i=1}^np(\lambda_i(Z^{(n)}))                             \\
+            & =\int_\mathbb{R}p(x)\frac{1}{n}\sum_{i=1}^n\delta_{\lambda_i(Z^{(n)})}(x)
         \end{split}
     \end{equation}
 \end{proof}
 
-$Z$が決定論的なら$\mu_Z$は決定論的，ランダムならばランダム確率測度
+$Z^{(n)}$が決定論的なら$\mu_{Z^{(n)}}$は決定論的，$Z^{(n)}$がランダム行列ならばランダム確率測度という．$\mu_{X^{(n)}}$がランダム確率測度ならば特に$E\mu_{X^{(n)}}$がwell-definedとなる．これは任意の連続関数$f$に対して
+\begin{equation}
+    E\int f(x)d\mu_{X^{(n)}}(x)=\int f(x)dE\mu_{X^{(n)}}(x)
+\end{equation}
+である．これを用いると次が示せる：
 
-$\mu_X$がランダム確率測度ならば特に$E\mu_{X}$がwell-defined．これは任意の連続関数$f$に対して
-\begin{equation}
-    E\int f(x)d\mu_{X}(x)=\int f(x)dE\mu_{X}(x)
-\end{equation}
-である．これを用いると任意の実数係数多項式$p$に対して
-\begin{equation}
-    \int p(t)dE\mu_{X}(t)\overset{n\to\infty}{\longrightarrow}\int p(t)ds(t)
-\end{equation}
-であることが証明できる．さらに，
-\begin{thm}
-    任意の有界連続関数$f$に対して
+\begin{thm}\label{thm:1-24}
+    $X^{(n)}$を$\mathrm{GUE}(n)$とする．任意の実数係数多項式$p\in\mathbb{R}[x]$に対して
     \begin{equation}
-        \int f(t)dE\mu_{X}(t)\overset{n\to\infty}{\longrightarrow}\int f(t)ds(t)
+        \int p(t)dE\mu_{X^{(n)}}(t)\overset{n\to\infty}{\longrightarrow}\int p(t)ds(t)
     \end{equation}
     が成り立つ．
 \end{thm}
-このことは
-\begin{equation}
-    E\mu_{X}\overset{\mathrm{weak}}{\longrightarrow} s
-\end{equation}
-であることを主張している．
 
-\begin{thm}[Wiegner's theorem]
-    $X^{(n)}$を$\mathrm{GUE}(n)$とする．このとき
+\begin{proof}
+    定理\ref{thm:1-20}を$\mu_{X^{(n)}}$ を用いて書き換えたものである．
+\end{proof}
+
+\begin{thm}[Wiegner's (semicircular) theorem]\label{thm:1-25}
+    $X^{(n)}$を$\mathrm{GUE}(n)$とする．任意の有界連続関数$f:\mathbb{R}\to\mathbb{R}$に対して
+    \begin{equation}
+        \int f(t)dE\mu_{X^{(n)}}(t)\overset{n\to\infty}{\longrightarrow}\int f(t)ds(t)
+    \end{equation}
+    が成り立つ．言い換えると，
     \begin{equation}
         E\mu_{X^{(n)}}\overset{n\to\infty}{\longrightarrow} s\quad(\textrm{in\, weak})
     \end{equation}
+    が成り立つ．
 \end{thm}
 
+\begin{proof}
+    後の定理\ref{thm:1.28}で正確に証明する．
+\end{proof}
+
+\begin{note*}
+    この定理には，複数のバリエーションがある．例えば，次のようなものもある．
+\end{note*}
+\begin{thm}[Wiegner's (semicircular) theorem: another variant]
+    $X^{(n)}=(x_{ij}^{(n)})$ を次の条件をみたす実数ランダム行列とする（以下の条件をみたす行列をWiegner Matrixという）：
+    \begin{itemize}
+        \item $x_{ij}^{(n)}=x_{ji}^{(n)}$．
+        \item $(x_{ij}^{(n)})_{i\geq j}$ は独立．
+        \item $E[x_{ij}^{(n)}]=0$．
+        \item $E[(x_{ij}^{(n)})^2]=1/n$．
+        \item すべてのモーメントは有限．
+    \end{itemize}
+    このとき，
+    \begin{equation}
+        E\mu_{X^{(n)}}\overset{n\to\infty}{\longrightarrow} s\quad(\textrm{in\, weak})
+    \end{equation}
+    が成り立つ．
+\end{thm}
+
+ここまでの収束は期待値の意味での収束だが，概収束の意味での収束も示すことができる（宿題）．まずは多項式に対して示し，その後に有界連続関数に対して示す．
+
+\begin{thm}\label{thm:1-26}
+    $X^{(n)}$をWignerランダム行列とする．任意の実数係数多項式$p\in\mathbb{R}[x]$に対して
+    \begin{equation}
+        \int p(t)d\mu_{X^{(n)}}(t)\overset{n\to\infty}{\longrightarrow}\int p(t)ds(t)
+    \end{equation}
+    が成り立つ．
+\end{thm}
+
+\begin{proof}
+    期待値の意味での収束はいえてるので，分散についてみる．
+    \begin{equation}
+        \begin{split}
+            V[\tr(X^{(n)})^k]
+            & =E[(\tr(X^{(n)})^k)^2]-(E[\tr(X^{(n)})^k])^2                                                                                                                                                               \\
+            & =\frac{1}{n^{k+2}}\sum_{1\leq i_1,\ldots,i_k\leq n}\sum_{1\leq j_1,\ldots,j_k\leq n}E[X_{i_1i_2}\cdots X_{i_ki_1}X_{j_1j_2}\cdots X_{j_kj_1}]-E[X_{i_1i_2}\cdots X_{i_ki_1}]E[X_{j_1j_2}\cdots X_{j_kj_1}]
+        \end{split}
+    \end{equation}
+    第1項の列 $i_1,\ldots,i_k,j_1,\ldots,j_k$ に対してグラフ的な解釈を考える．以前の注意でも見た通り，この列の中で重複なしindexの数を$w$とすると，$w\leq k+1$である．もし，$i_1,\ldots,i_k$ の部分と $j_1,\ldots,j_k$ の部分が完全に独立していれば，第2項と相殺されるので，グラフにおいて $i_1,\ldots,i_k$ の部分と $j_1,\ldots,j_k$ の部分は，何らかの辺で繋がっている場合について考えることになる．特に $w=k+1$ の場合を考えると，この場合は存在しないことが次のように示せる．
+
+    このとき，グラフ $G=(V,E)$ を $V$ として $i_1,\ldots,i_k,j_1,\ldots,j_k$ から重複なく作る集合，$E=\{(i_1,i_2),\ldots,(i_k,i_1),(j_1,j_2),\ldots,(j_k,j_1)\}$としたとき $|V|=k+1,|E|=k$ となり，木となっている．同時に，$G_i=(V_i,E_i)$ を $V_i$ として $i_1,\ldots,i_k$ から重複なく作る集合，$E=\{(i_1,i_2),\ldots,(i_k,i_1)\}$ とする．このとき，列 $i_1,\ldots,i_k,j_1,\ldots,j_k$ が1つのパスになっており，無向グラフとみた場合には同一辺がちょうど2つずつある．言い換えれば，列 $i_1,\ldots,i_k,j_1,\ldots,j_k$ を 列$s_1,\ldots,s_{2k}$ に対応させたときに，任意の辺 $(s_l,s_{l+1})$ に対して $s_l=s_{m+1},s_{l+1}=s_m$ をみたすような辺 $(s_m,s_{m+1})$ が存在する．このとき，何らかの辺で $i$ と $j$ が繋がっているはずなので，$(i_l,i_{l+1})$ に対して $i_l=j_{m+1},i_{l+1}=j_m$ をみたすような辺 $(j_m,j_{m+1})$ が存在するはずである．しかし， $G_i,G_j$ 内のみでも2つの組となる辺が存在していなければならないので矛盾である．したがって $w\leq k$ であることがわかる．
+
+    このことを認めれば，いま，各モーメントは有界であり，和をとったものは $O(n^k)$ となる．したがって $V[\tr(X^{(n)})^k]=O(1/n^2)$ であることがわかる．
+
+    さて，マルコフの不等式を利用すると，任意の $\varepsilon>0$ に対して
+    \begin{equation}
+        \begin{split}
+            P\mleft(\mleft|\tr(X^{(n)})^k-E[\tr(X^{(n)})^k]\mright|>\varepsilon\mright)
+            & =P\mleft(\mleft|\tr(X^{(n)})^k-E[\tr(X^{(n)})^k]\mright|^2>\varepsilon^2\mright) \\
+            & \leq\frac{V[\tr(X^{(n)})^k]}{\varepsilon^2}                                      \\
+            & \leq\frac{C}{n^2}\quad(\exists C>0)
+        \end{split}
+    \end{equation}
+    であることがわかる．よって
+    \begin{equation}
+        \sum_{n=1}^\infty P\mleft(\mleft|\tr(X^{(n)})^k-E[\tr(X^{(n)})^k]\mright|>\varepsilon\mright)\leq C\sum_{n=1}^\infty\frac{1}{n^2}<\infty
+    \end{equation}
+    である．したがって，Borel-Cantelliの補題より
+    \begin{equation}
+        P\mleft(\mleft|\tr(X^{(n)})^k-E[\tr(X^{(n)})^k]\mright|>\varepsilon\,\,\mathrm{i.o.}\mright)=0
+    \end{equation}
+    したがって
+    \begin{equation}
+        \lim_{n\to\infty}\mleft|\tr(X^{(n)})^k-E[\tr(X^{(n)})^k]\mright|=0\quad(\mathrm{a.s.})
+    \end{equation}
+\end{proof}
+
+\begin{thm}[Wiegner's (semicircular) theorem: a.s. version]\label{thm:1.28}
+    $X^{(n)}$をWignerランダム行列とする．任意の有界連続関数$f:\mathbb{R}\to\mathbb{R}$に対して
+    \begin{equation}
+        \int f(t)d\mu_{X}(t)\overset{n\to\infty}{\longrightarrow}\int f(t)ds(t)
+    \end{equation}
+    が成り立つ．
+\end{thm}
+
+\begin{proof}
+    定理\ref{thm:1-26}を認めることにする．また，$X^{(n)}$ は対角化されていると考えても一般性を失わない．$\mu_{X^{(n)}}=\frac{1}{n}\sum_{i=1}^n\delta_{\lambda_i^{(n)}}$とすると
+    \begin{equation}
+        \int f d\mu_{X^{(n)}}=\frac{1}{n}\sum_{i=1}^nf(\lambda_i^{(n)})=\mathrm{tr}f(X^{(n)})
+    \end{equation}
+    ワイエルシュトラスの近似定理より，任意の $\varepsilon>0$ に対して，ある多項式 $ p_\varepsilon$ が存在して $\sup_{|t|\leq 3}|f(t)-p_\varepsilon(t)|<\varepsilon/2$ とできる．いま，
+    \begin{equation}
+        \begin{split}
+            \mleft|\int f d\mu_{X^{(n)}}-\int f ds\mright|
+            & \leq\mleft|\int f d\mu_{X^{(n)}}-\int p_\varepsilon d\mu_{X^{(n)}}\mright|+\mleft|\int p_\varepsilon d\mu_{X^{(n)}}-\int p_\varepsilon ds\mright|+\mleft|\int p_\varepsilon ds-\int f ds\mright| \\
+            & \leq\int_{|t|\leq 3}|f(t)-p_\varepsilon(t)|d\mu_{X^{(n)}}+\int_{|t|> 3}|f(t)-p_\varepsilon(t)|d\mu_{X^{(n)}}                                                                                     \\
+            & \qquad+\mleft|\int p_\varepsilon d\mu_{X^{(n)}}-\int p_\varepsilon ds\mright|+\mleft|\int p_\varepsilon ds-\int f ds\mright|
+        \end{split}
+    \end{equation}
+    \begin{itemize}
+        \item $[-3,3]$ 上で $|f(x)-p_\varepsilon(x)|<\varepsilon/2$ であり， $\mu_{X^{(n)}}$ は確率測度であるから
+              \begin{equation}
+                  \int_{|t|\leq 3} |f(t) - p_\varepsilon(t)| d\mu_{X^{(n)}}(t)<\frac{\varepsilon}{2}
+              \end{equation}
+        \item $f$ は有界なので $|f(t)-p_\varepsilon(t)|\leq\|f\|_\infty +|p_\varepsilon(t)|$ であり， $|t|>3$ では $p_\varepsilon$ の次数を $k$ とおくと，ある定数 $c>0$ が存在して $\|f\|_\infty+|p_\varepsilon(t)|\leq c|t|^k$ とできる．したがって
+              \begin{equation}
+                  \begin{split}
+                      \int_{|t|>3}|f(t)-p_\varepsilon(t)|d\mu_{X^{(n)}}(t) & \leq\int_{|t|>3}c|t|^kd\mu_{X^{(n)}}(t)                                                                          \\
+                      & \leq \frac{c}{3^{k+2l}}\int_{|t|>3}|t|^{2(k+l)}d\mu_{X^{(n)}}(t)\quad (k=2(k+l)-(k+2l),\forall l\in\mathbb{Z}_+)
+                  \end{split}
+              \end{equation}
+              また，定理\ref{thm:1-26}を用いて
+              \begin{equation}
+                  \begin{split}
+                      \lim_{n\to\infty}\int |t|^{2(k+l)}d\mu_{X^{(n)}}(t)
+                      & =\int |t|^{2(k+l)}ds(t)\quad(\mathrm{a.s.})             \\
+                      & =\int_{-2}^2t^{2(k+l)}\frac{1}{2\pi}\sqrt{4-t^2}dt      \\
+                      & \leq  2^{2(k+l)}\int_{-2}^2\frac{1}{2\pi}\sqrt{4-t^2}dt \\
+                      & =2^{2(k+l)}
+                  \end{split}
+              \end{equation}
+              したがって
+              \begin{equation}
+                  \limsup_{n\to\infty}\int |f(t)-p_\varepsilon(t)|d\mu_{X^{(n)}}\leq \frac{c}{3^{k+2l}}\cdot 2^{2(k+l)}=c\mleft(\frac{4}{3}\mright)\mleft(\frac{2}{3}\mright)^{2l}\to 0\quad (l\to\infty)
+              \end{equation}
+              よって
+              \begin{equation}
+                  \int |f(t)-p_\varepsilon(t)|d\mu_{X^{(n)}}\to 0\quad (l\to\infty)
+              \end{equation}
+        \item 定理\ref{thm:1-26}を用いると
+              \begin{equation}
+                  \mleft|\int p_\varepsilon d\mu_{X^{(n)}}-\int p_\varepsilon ds\mright|\to 0\quad (n\to\infty)
+              \end{equation}
+        \item $[-3,3]$ 上で$|p_\varepsilon(t)-f(t)|<\varepsilon/2$ であり，これは $s$ の台である $[-2,2]$ を含むので
+              \begin{equation}
+                  \mleft|\int p_\varepsilon ds - \int f ds\mright|\leq \int |p_\varepsilon - f|ds < \frac{\varepsilon}{2}
+              \end{equation}
+    \end{itemize}
+    以上を合わせると
+    \begin{equation}
+        \limsup_{n\to\infty}\mleft|\int f d\mu_{X^{(n)}}-\int f ds\mright|\leq\varepsilon
+    \end{equation}
+    したがって
+    \begin{equation}
+        P\mleft(\limsup_{n\to\infty}\mleft|\int f d\mu_{X^{(n)}}-\int f ds\mright|>\varepsilon\mright)=0
+    \end{equation}
+    このことは
+    \begin{equation}
+        \int f d\mu_{X^{(n)}}=\mathrm{tr}(f(X^{(n)}))\overset{n\to\infty}{\longrightarrow}\int f ds\quad(\textrm{a.s.})
+    \end{equation}
+    を意味する．
+\end{proof}
+
+発展的な内容として，GUEの行列の積がどのようになるか考えてみる．すなわち，$X_1^{(n)},\ldots,X_d^{(n)}$ を $\mathrm{GUE}(n)$ としたとき， $E[\mathrm{tr}X^{(n)}_{i_1}\cdots X^{(n)}_{i_n}]$ $i_1,\ldots,i_k\in\{1,\ldots, d\}^k$がどのようになるか？という問題である．これに対しては，次の結果が知られている：
+
+\begin{thm}
+    \begin{equation}
+        E[\mathrm{tr}X^{(n)}_{i_1}\cdots X^{(n)}_{i_k}]=\sum_{\pi\in\mathcal{P}_2(k);\pi\, \textrm{is\, compatible\, with}\, \{i_1,\ldots,i_n\}} n^{|\gamma|-|\pi|-|\gamma\pi|}
+    \end{equation}
+\end{thm}
+
+これを用いると，非常に一般的な結果を示すことができる．
+
+\begin{thm}
+    $p$ を非可換な $d$ 個の変数 $x_1,\ldots,x_d$ をもつNC多項式とし，$p^{(n)}$ を変数を確率変数で置き換えて得られるランダム行列とする．このとき，$p$ に依存する確率測度 $\mu_p$ が存在して
+    \begin{equation}
+        E\mu_{p^{(n)}}\overset{n\to\infty}{\longrightarrow}\mu_p
+    \end{equation}
+\end{thm}
+
+\begin{note*}
+    例えば $p=x_1x_2+x_2x_1$ なら $p^{(n)}=X_1^{(n)}X_2^{(n)}+X_2^{(n)}X_1^{(n)}$．
+\end{note*}
+
+\begin{note*}
+    Wiegner's Theoremは $p=x_1$ の場合で，このとき $\mu_p=s$ となる．しかし，一般の $p$ に対して $\mu_p$ の分布を調べることは困難である．これは現在の自由確率論の目標である．ただし，存在性を示すだけであればそこまで難しくない．
+\end{note*}
+
+\begin{proof}
+    ここでは存在性のみを示す．鍵となるのは $p^k$ もNC多項式となることである．つまり $(p^k)^{(n)}=(p^{(n)})^k$ が成り立つ．したがって， $p^k$ を展開すると $E[\mathrm{tr}(p^k)^{(n)}]$ は $n\to\infty$ で収束することがいえる．実際 $E[\mathrm{tr}(p^k)^{(n)}]$ は $E[\mathrm{tr}X_{i_1}^{(n)}\cdots X_{i_k}^{(n)}]$ の線形結合であり，各 $E[\mathrm{tr}X_{i_1}^{(n)}\cdots X_{i_k}^{(n)}]$ は $n\to\infty$ で収束する．ゆえに
+    \begin{equation}
+        E[\mathrm{tr}(p^{(n)})^k]=\int x^k dE\mu_{p^{(n)}}
+    \end{equation}
+    は任意の $k$ で収束することがいえる．ゆえに，任意の多項式について有限の極限値が存在する．
+\end{proof}
 \section{Preliminaries}
 
 \begin{dfn}[a.s. bounded]
@@ -728,7 +924,7 @@ $\mu_X$がランダム確率測度ならば特に$E\mu_{X}$がwell-defined．こ
 \end{dfn}
 
 \begin{note*}
-    a.s. bounded $\Rightarrow$ sub-gaussian $\Rightarrow$ $k$次のモーメントが有限
+    a.s. bounded $\rightarrow$ sub-gaussian $\rightarrow$ $k$次のモーメントが有限
 \end{note*}
 
 \begin{prop}
@@ -763,11 +959,11 @@ $\mu_X$がランダム確率測度ならば特に$E\mu_{X}$がwell-defined．こ
     \begin{equation}
         \begin{split}
             g(E[X])
-            &=g(y)\\
-            &=ay+b\\
-            &=d(y)\\
-            &=E[d(X)]\\
-            &\leq E[g(X)]\quad(\because d(X)\leq g(X))
+            & =g(y)                                     \\
+            & =ay+b                                     \\
+            & =d(y)                                     \\
+            & =E[d(X)]                                  \\
+            & \leq E[g(X)]\quad(\because d(X)\leq g(X))
         \end{split}
     \end{equation}
     となる．
@@ -792,12 +988,391 @@ $\mu_X$がランダム確率測度ならば特に$E\mu_{X}$がwell-defined．こ
     ここで，Markovの不等式より
     \begin{equation}
         \begin{split}
-            P\mleft(|\langle x,y\rangle|\geq \frac{t}{\sqrt{n}}\mright)&=P\mleft(|\langle x,y\rangle|^2\geq \frac{t^2}{n}\mright) \\
-            &\leq \frac{E[|\langle x,y\rangle|^2]}{t^2/n}\\
-            &\leq\frac{1}{t^2}
+            P\mleft(|\langle x,y\rangle|\geq \frac{t}{\sqrt{n}}\mright) & =P\mleft(|\langle x,y\rangle|^2\geq \frac{t^2}{n}\mright) \\
+            & \leq \frac{E[|\langle x,y\rangle|^2]}{t^2/n}              \\
+            & \leq\frac{1}{t^2}
         \end{split}
     \end{equation}
 
     これより，高次元で2つのベクトルをランダムにとれば，それらはa.s.でほぼ直交することがわかる．実際，これはsub-gaussianである．
 \end{example}
+
+\begin{note*}\,\vspace{-0.5\baselineskip}
+    \begin{itemize}
+        \item 例えば $F(x)=x^2$ のような Lipschitzでない関数では成立しない．
+        \item $E[F(X)]$ は有界である．これは，1-Lipschitzならば $\exists C>0,|F(X)|\leq C+|X|$ に対して期待値をとり，多次元のRolleの定理を適用することでわかる．
+    \end{itemize}
+\end{note*}
+
+\begin{proof}
+    一般性を失わずに $E[F(X)]=0$ としてよい． そうでなければ $F(X)-E[F(X)]$ でおきかえる（1-Lipschitzを思い出す）．
+    $F$ と $-F$ の対称性から $P(F(X)\geq\lambda)\leq C\exp(-c\lambda^2)$ を示せば十分．さらに，$F$ が $C^1$ 級であり $|\nabla F|\leq 1$ を仮定しても一般性を失わない\footnote{
+        density argumentによって，すべての1-Lipschitzな関数は $C^1$ 級で 1-Lipschitzな関数によって，sup normにおいて近似できることが示せる．具体的には以下のようになる：
+
+        1-Lipschitzな関数 $F:\mathbb{R}^n\to\mathbb{R}$ に対して畳み込みを考える．すなわち， $\chi_\varepsilon:\mathbb{R}^n\to\mathbb{R}$ s.t. (i)$\chi_\varepsilon\geq 0$，(ii)$\chi_\varepsilon(x)=0$ if $|x|\geq\varepsilon$（smooth approximate of unit）， (iii)$\int_{x\in\mathbb{R}^n}\chi_\varepsilon(x)dx=1$ となるものを考える．これを使って $F_\varepsilon\coloneqq F*\chi_\varepsilon: x\mapsto\int_{x\in\mathbb{R}^n}\chi_\varepsilon(y)F(x-y)dy$ とする．このとき$\forall\varepsilon>0,\exists F_\varepsilon:\mathbb{R}^n\to\mathbb{R}$ s.t. $F_\varepsilon$ は 1-Lipschitzかつ$C^1$ 級であり， $\forall x\in\mathbb{R},|F_\varepsilon(x)-F(x)|\leq\varepsilon$ となる．
+
+        実際，$F$ が 1-Lipschitzであることから，$\forall x,y\in\mathbb{R}^n,|F(x-y)-F(x)|\leq|y|$ である．したがって，$|F_\varepsilon(x)-F(x)|=\mleft|\int_{x\in\mathbb{R}^n}\chi_\varepsilon(y)(F(x-y)-F(x))dy\mright|\leq\int_{x\in\mathbb{R}^n}\chi_\varepsilon(y)|F(x-y)-F(x)|dy\leq\int_{x\in\mathbb{R}^n}\chi_\varepsilon(y)|y|dy\leq\varepsilon$ となる．
+    }．したがってMarkovの不等式より $P(F(X)\geq\lambda)\leq \exp(-t\lambda)E[\exp(tF(X))]$ となるので，$\forall\varepsilon\geq 0$ に対して $E[\exp(t F(X))]\leq\exp(ct^2)$ を示せば十分．これを示すために， $E[\exp(t(F(X)-F(Y)))]\leq\exp(ct^2)$ を示す（ただし $X,Y$ は独立）．
+
+    "replica" trickを用いる。すなわち，$Y=(Y_1,\ldots,Y_n)$ を $X=(X_1,\ldots,X_n)$ の独立なコピーとする．このとき，Jensenの不等式から， $E[F(Y)]=0$ に注意して
+    \begin{equation}
+        \exp(-tE[F(Y)])=1\leq E[\exp(-tF(Y))]
+    \end{equation}
+    となる． $X$ と $Y$ は独立なので， $F(X)$ と $F(Y)$ も独立で，
+    \begin{equation}
+        \begin{split}
+            E[\exp(tF(X))]
+            & =E[\exp(tF(X))]\cdot 1             \\
+            & \leq E[\exp(tF(X))]E[\exp(-tF(Y))] \\
+            & = E[\exp(t(F(X)))\exp((-F(Y)))]    \\
+            & = E[\exp(t(F(X)-F(Y)))]
+        \end{split}
+    \end{equation}
+    が成り立つ． $E[\exp(tF(X))]$ を評価する代わりに $E[\exp(t(F(X)-F(Y)))]$ を評価することを考える．$X_\theta=Y\cos\theta+X\sin\theta$ とおく．このとき
+    \begin{equation}
+        F(X)-F(Y)=\int_0^{\frac{\pi}{2}}\frac{d}{d\theta}F(X_\theta)d\theta
+    \end{equation}
+    である\footnote{
+        ここで，微分積分学の基本定理を利用する：
+        \begin{equation}
+            F(X)-F(Y)=\int_0^1\frac{d}{dt}F(tX+(1-t)Y)dt
+        \end{equation}
+        ただし，ここでは直線の代わりに曲線を利用している：
+        \begin{equation}
+            F(X)-F(Y)=\int_0^{\frac{\pi}{2}}\frac{d}{d\theta}F(Y\cos\theta +X\sin\theta )d\theta
+        \end{equation}
+    }．$\dot{X}_\theta=\frac{d}{d\theta}X_\theta=-Y\sin\theta+X\cos\theta$\footnote{
+        $X,Y\sim_{\textrm{i.i.d}}\mathcal{N}(0,I)$ とすれば $X_\theta\sim\mathcal{N}(0,\sqrt{I\cos^2\theta+I\sin^2\theta})=\mathcal{N}(0,I)$
+    }なので $\frac{d}{d\theta}F(X_\theta)=\langle\nabla F(X_\theta),\dot{X}_\theta\rangle$ であり
+    \begin{equation}
+        \begin{split}
+            \exp(t(F(X)-F(Y)))
+            & =\exp\mleft(\int_0^{\frac{\pi}{2}}\langle\nabla  F(X_\theta),\dot{X}_\theta\rangle d\theta\mright)                             \\
+            & =\exp\mleft(\int_0^{\frac{\pi}{2}}\langle\nabla F(X_\theta),\dot{X}_\theta\rangle \frac{\pi}{2}\frac{2}{\pi}d\theta\mright)    \\
+            & \leq\frac{2}{\pi}\int_0^{\frac{\pi}{2}}\exp\mleft(\frac{\pi}{2}t\langle\nabla F(X_\theta),\dot{X}_\theta\rangle\mright)d\theta
+        \end{split}
+    \end{equation}
+    となる．ただし，最後の不等号はJensenの不等式を用いた（ $\theta$ が $[0,\frac{\pi}{2}]$ 上の一様分布のパラメータとみる）．
+    \begin{equation}
+        \begin{split}
+            E\mleft[\exp\mleft(\frac{\pi}{2}t\langle\nabla F(X_\theta),\dot{X}_\theta\rangle\mright)\mright]
+            & = E\mleft[\exp\mleft(\frac{\pi}{2}t\langle\nabla F(Y),X\rangle\mright)\mright]\quad\mleft((X_\theta,\dot{X}_\theta)\overset{\mathrm{d}}{=}(X,Y)\mright)                                             \\
+            & = \int_{y\in\mathbb{R}^n}\int_{x\in\mathbb{R}^n}\exp\mleft(\frac{\pi}{2}t\langle\nabla F(y),x\rangle\mright)d\mu_X(x)d\mu_Y(y)\quad\mleft(d\mu(x)=(2\pi)^{-\frac{n}{2}}e^{-\frac{x^2}{2}}dx\mright) \\
+            & = \int_{y\in\mathbb{R}^n}\exp(\frac{\pi^2}{8}t^2\|\nabla F(y)\|^2)d\mu_Y(y)                                                                                                                         \\
+            & \leq \exp(ct^2) \quad (\exists c>0)
+        \end{split}
+    \end{equation}
+    したがって
+    \begin{equation}
+        E[\exp(tF(X))]\leq E[\exp(t(F(X)-F(Y)))]\leq\frac{2}{\pi}\int_0^{\frac{\pi}{2}}E\mleft[\exp\mleft(\frac{\pi}{2}t\langle\nabla F(X_\theta),\dot{X}_\theta\rangle\mright)\mright]d\theta\leq\exp(ct^2)
+    \end{equation}
+\end{proof}
+
+\section{Eigenvalue Inequalities}
+
+$A$ をエルミート行列とし，$\lambda_1(A)\geq\cdots\geq\lambda_n(A)$ を $A$ の固有値とする（このとき，この固有値はすべて実数である）．
+
+\begin{qes}[Horn's problem]
+    $A,B$ をエルミート行列とし，$\lambda_1(A)\geq\cdots\geq\lambda_n(A)$，$\lambda_1(B)\geq\cdots\geq\lambda_n(B)$ をそれぞれの固有値とする．このとき，$A+B$ のすべての可能な固有値は何か？
+\end{qes}
+
+以下では $\lambda_i(A)=\lambda_i,\lambda_i(B)=\mu_i$ とおく．
+
+\begin{example}
+    例えば$\lambda_1,\lambda_2=-\lambda_1$ と $\mu_1,\mu_2=-\mu_1$ であり $\lambda_1\geq\mu_1\geq 0$ の場合，一般性を失うことなく $\mathrm{Tr}A=\mathrm{Tr}B=0,0\leq\lambda_2=-\lambda_1,0\leq\mu_2=-\mu_1$ とおける．このとき，Horn's problemの答えは $\forall\lambda_1,\lambda$ s.t. $\lambda\in[\lambda_1-\mu_1,\lambda_1+\mu_1]$
+\end{example}
+
+\begin{note*}[表現論との関連性]
+    Clebsch-Gordan's rule: $V_\lambda\otimes V_\mu=V_{\lambda+\mu}\oplus\cdots\oplus V_{\lambda-\mu}$
+
+    $n=2$ では $\mathrm{SU}(2)$のスピン規約表現 これは$\mathbb{R}^2$ の断片．
+    一般の $n$ では，Hornは$\mathbb{R}^n$のpolytopeであると予想した．
+    Kirwan Guillemin Sternberg はpolytopeであることを示した（シンプレクティック幾何）
+    Klyachkoは表現論のsaturation conjecture(theorem) と等しいことを示し，KnutsonとTaoがsaturation conjectureを証明した．
+\end{note*}
+
+Horn's problem の（部分的な）説明：
+
+$A$の固有値を$\lambda_1\geq\cdots\geq\lambda_n$ ，$B$の固有値を $\mu_1\geq\cdots\geq\mu_n$ ， $A+B$ の固有値を $\nu_1\geq\cdots\geq\nu_n$ とする．このとき$\nu_1+\cdots+\nu_n=\lambda_1+\cdots+\lambda_n+\mu_1+\cdots+\mu_n$ （ $\mathrm{Tr}(A+B)=\mathrm{Tr}A+\mathrm{Tr}B$ ）である．このとき $\nu_1\leq \lambda_1+\mu_1$を示す：
+
+定数だけシフトすることで $\lambda_n,\mu_n\geq 0$ として考えてよい．もし $A,B\geq O$（正定値）ならば $A+B\geq O$ ．これを仮定すると$\lambda_1=\|A\|,\mu_1=\|B\|,\nu_1=\|A+B\|$であり，$\nu_1\leq \lambda_1+\mu_1$ は作用素ノルムの三角不等式となる．
+
+% 続き書く
+
+\section{Stein's Method}
+
+%  [Tao, 2.2.6]
+
+ガウス分布 $\mathcal{N}(0,1)$ と， ガウス分布に分布として近づいていくものの特徴づけを与える（ガウス分布に近い分布はどうなるか）．
+
+標準ガウス分布の確率密度関数 $\rho(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$ は微分方程式 $\rho'(x)+x\rho(x)=0$ をみたす．いま $f:\mathbb{R}\to\mathbb{R}$ を $C^1$ 級，$\exists C>0$ s.t. $\forall x\in\mathbb{R},|f(x)|\leq C,|f'(x)|\leq C$ とすると
+\begin{equation}
+    \int_{-\infty}^{\infty}\rho(x)(xf(x)-f'(x))dx=0
+\end{equation}
+が成り立つ．これを確率論の言葉で書き直すと，$X\sim\mathcal{N}(0,1)$ に対して
+\begin{equation}
+    E[Xf(X)]=E[f'(X)]
+\end{equation}
+が成り立つ．逆も成り立つことが知られている：
+
+\begin{lem}
+    $X$ を実数値確率変数であって $\forall f:\mathbb{R}\to\mathbb{R}$ であり $E[X f(X)]=E[f'(X)]$ をみたす(*)ならば， $f(X)\sim\mathcal{N}(0,1)$
+\end{lem}
+
+したがって，この恒等式 $E[Xf(X)]=E[f'(X)]$ を（正確に等号でなくても）ほとんどみたせば，$X$ はほとんどガウス分布に従うことがわかる．
+
+分布$X$が何かわからない状態で，$G$に近いことを示すには？
+\begin{itemize}
+    \item $X$ を $X\cos\theta+G\sin\theta$ に置き換える（$X$ は未知の分布，$G\sim\mathcal{N}(0,1)$， $G$は$X$と独立）．後で $\theta\to 0$ をとる．
+    \item モーメントを調べる（有界でない場合は適当にtruncateする）．
+\end{itemize}
+
+今回のケースではモーメントが一意に分布を決定する（Hamburger moment problem）．
+
+\begin{thm}[Stein continuity theorem]
+    $\{X_n\}$ を $E[|X_n|^2]<\infty$ な確率変数列とする．このとき，以下は同値である：
+    \begin{enumerate}
+        \item 任意の$f$ s.t. $C_1$ 級， $f,f'$ は有界に対して $E[f'(X_n)-X_nf(X_n)]\to 0$
+        \item $X_n\overset{\mathrm{d}}{\longrightarrow}G$（$G\sim\mathcal{N}(0,1)$）
+    \end{enumerate}
+\end{thm}
+
+\begin{proof}
+    概略を示す．
+
+    \textbf{[(ii)$\to$(i)]} $\varphi:\mathbb{R}\to\mathbb{R}$ は有界連続とする．$E\varphi(X_n)\to E\varphi(G)$ を示したい．$\varphi$が(*)をみたせばこれが成り立つ．$E[\varphi'(X_n)-X_n\varphi(X_n)]\to E[\varphi'(G)-G\varphi(G)]=0$ を示したい．$\varphi$ が(*)をみたすかは不明なので，近似を行う．
+    \begin{enumerate}
+        \item $\varphi$ を $\varphi_\varepsilon$ によって近似（$|\varphi-\varphi_\varepsilon|<\varepsilon,|\varphi_\varepsilon'|<10/\varepsilon$）．
+        \item $x\mapsto x\varphi(x)$ を任意の区間でコンパクトな有界な関数によって近似する．
+    \end{enumerate}
+    こういった理由により $\limsup_{n\to\infty}|E[f'(X_n)-X_nf(X_n)]|<100\varepsilon$．
+
+    \textbf{[(i)$\to$(ii)]} $\varphi$ を有界とする． $E\varphi(X_n)\to E\varphi(G)$ を示せば十分．一般性を失わずに $E\varphi(G)=0,|\varphi(x)|\leq 1(\forall x)$ としてよい．ここで，$f:\mathbb{R}\to\mathbb{R}$ s.t. $\forall x,\varphi(x)=f'(x)-xf(x)$ を見つけたい．
+    \begin{enumerate}
+        \item $f(x)=e^{\frac{x^2}{2}}\int_{-\infty}^x e^{-\frac{y^2}{2}}\varphi(y)dy$ をとる．
+        \item $\varphi(X_n)=f'(X_n)-X_nf(X_n)$ となっていることを確認する．
+    \end{enumerate}
+    このとき $E[\varphi(X_n)]=E[f'(X_n)-X_nf(X_n)]\to E[G]=0$ となるのでよい．
+
+\end{proof}
+
+\section{The operator norm of random matrices}
+
+Wiegner's theorem は 暗に次のことを意味している：$2<a<b$ とし，確率変数 $\#\{i;\lambda_i^{(n)}\in[a,b]\}=n\mu_{X^{(n)}}([a,b])=\rho_n([a,b])\in\{0,\ldots,n\}$を考える．$E[\rho_n([a,b])]=n\int_a^b ds=o(n)$
+
+\begin{qes}
+    固有値 $\lambda_i^{(n)}$ s.t. $|\lambda_i^{(n)}|>2+\varepsilon$ となるものは存在するのか？言い換えれば，確率変数 $\lambda_1^{(n)},\lambda_n^{(n)}$ は極限をもつのか？もしそうなら $+2,-2$ となるのか？
+\end{qes}
+
+類似の問題
+
+\begin{qes}
+    $\max\{|\lambda_1^{(n)}|,|\lambda_n^{(n)}|\}=\|X^{(n)}\|=\sup_{|\lambda|\neq 0}\|X\lambda\|_{L^2}/\|\lambda\|_{L^2}$ のとき，$\lim_{n\to\infty}\|X^{(n)}\|$ はどうなるか？
+\end{qes}
+
+次のことは容易に示せる
+
+\begin{lem}
+    任意の $\varepsilon>0$ に対して $P(\liminf_{n\to\infty}\|X^{(n)}\|\geq 2)\geq 1-\varepsilon$
+\end{lem}
+
+\begin{proof}
+    （概略）もし $\liminf_{n\to\infty}\|X^{(n)}\|<2-\varepsilon$ ならば，全固有値は $[-2+\varepsilon,2-\varepsilon]$ に入っている．$\mathrm{tr}((X^{(n)})^{2k})\to\mathrm{Cat}(k)\leq (2-\varepsilon)^{2k}$ だが， $\mathrm{Cat}(k)\sim c\cdot 4^k\cdot k^{-\frac{3}{2}}$ なので，十分大きな $k$ で矛盾する．
+\end{proof}
+
+これより，$P(\limsup_{n\to\infty}\|X^{(n)}\|\leq 2)=1$ がいえれば，$\lim_{n\to\infty}\lambda_1^{(n)},\lim_{n\to\infty}\lambda_n^{(n)}$の存在と，それらが $+2,-2$ であることを暗に示す．これを示すには，2つのアプローチがある：
+
+\begin{enumerate}
+    \item "soft" net argument：$P(\|X^{(n)}\|\geq 10)\to 0 (n\to\infty)$（boundが2だとダメだが，5倍すると示せる）．なお $\mathrm{supp} L(\|X^{(n)}\|)=[0,\infty]$
+    \item strong moment argument：$\forall\varepsilon>0,P(\limsup_{n\to\infty}\|X^{(n)}\|>2+\varepsilon)=0$
+\end{enumerate}
+
+\subsection{"soft" net argument}
+
+簡単のため $\sqrt{n}X^{(n)}$ について調べる．$X_{ij}^{(n)}$ は $n$ に依存した分散をもつ．$S=\{x\in\mathbb{C}^n:|\lambda|=1\}$ とする．このとき，十分に大きな定数 $A$ と $n$ によらない定数 $c,C$ があって
+\begin{equation}
+    \forall x\in S,P(|Mx|\geq \sqrt{n}A)\leq C\exp(-ncA)\tag{*}
+\end{equation}
+となる（Wick's theoremなどを利用して愚直に分散を計算すると示せる）．
+
+\begin{note*}
+    実際，この結果は$\sqrt{n}X_{ij}^{(n)}$がiidのサブガウシアンである場合と同じである．
+\end{note*}
+
+\begin{lem}
+    $\Sigma$ を $S$ のmaximal $1/2$-net とする．このとき$\mathbb{C}$ 値 $n\times n$ ランダmム行列 $X^{(n)}$ について%このとき $\Sigma\subset S$ は$\varepsilon$-net である，すなわち $x,y\in\Sigma,x\neq y\Rightarrow |x-y|\geq \varepsilon$
+    \begin{equation}
+        \forall\lambda>0,P(\|X_1^{(n)}\|>\lambda)\leq P\mleft(\bigvee_{y\in\Sigma}|X^{(n)}y|>\frac{\lambda}{2}\mright)
+    \end{equation}
+    が成り立つ．
+\end{lem}
+
+\begin{note*}
+    左辺の条件は，$\|X^{(n)}\|=\sup_{x\in S}\|X^{(n)}x\|>\lambda\Leftrightarrow \forall x\in S,|X^{(n)}x|>\lambda$．このままでは無限個の $x$ を考えなければならないが，右辺を評価することで有限個について考えれば済むことになる．こうして分解した右辺を，上で述べた(*)式を利用して抑える．
+\end{note*}
+\begin{proof}
+    $x\in S$ を $\|M\|=|Mx|$ ととる．また $y\in\Sigma$ を $|x-y|<1/2$ ととる．このとき $|Mx-My|\leq\|M\|/2$．三角不等式から $|My|>\|M\|/2$ が従う．よって， $\|M\|>\lambda$ ならば $|My|>\lambda/2$．
+\end{proof}
+
+$P\mleft(\bigvee_{y\in\Sigma}|X^{(n)}y|>\lambda/2\mright)\leq\#\Sigma\cdot\max_{y\in\Sigma}P(|X^{(n)}y|>\lambda/2)$ が成り立つことは直ちにわかる．ここで $\#\Sigma$ を評価する．
+
+\begin{lem}
+    $\Sigma$ を $S$ の $\varepsilon$-netとする．このとき，$\exists c>0$ s.t. $\#\Sigma <(c/\varepsilon)^n$
+\end{lem}
+
+\begin{proof}
+    $\#\Sigma\cdot\mathrm{Vol} B(0,\varepsilon/2)\leq\mathrm{Vol}(B(0,3/\varepsilon))$．ただし $\mathrm{Vol}(B(0,x))=Cx^n,\exists C>0$．
+\end{proof}
+
+以上より，(*)も合わせて
+\begin{equation}
+    P(\|X^{(n)}\|>\lambda)\leq\tilde{C}^n C\exp\mleft(-nc\cdot\frac{\lambda}{2}\mright)
+\end{equation}
+$\lambda$ を十分大きくとれば，右辺は指数的に0に近づく．
+
+\begin{note*}
+    上記のsoft "ε-net" argument では $\exists C> 0$ があって， $P(\|X^{(n)}\|>C)\overset{n\to\infty}{\longrightarrow} 0$ となる．この方法では，$C$は有限だが $C=10$ となってしまい最適化できない．
+\end{note*}
+
+\subsection{strong moment argument}
+
+\begin{thm}
+    任意の $\varepsilon>0$ に対して $P(\|X^{(n)}\|> 2+\varepsilon)\overset{n\to\infty}{\longrightarrow}0$ ならば， $P(\limsup_{n\to\infty}\|X^{(n)}\|\leq 2+\varepsilon)=1$ となる．
+\end{thm}
+
+\begin{note*}
+    この結果は，$P(\liminf_{n\to\infty}\|X^{(n)}\|\leq 2-\varepsilon)=1$ とあわせると $P(\lim_{n\to\infty}\|X^{(n)}\|=2)=1$ であることがわかる．
+\end{note*}
+
+$k\in\mathbb{N}$ をとる． $\|(X^{(n)})^{2k}\|=\|X^{(n)}\|^{2k}\leq\mathrm{Tr}((X^{(n)})^{2k})$．期待値をとると $E[\|X^{(n)}\|^{2k}]\leq E[\mathrm{Tr}((X^{(n)})^{2k})]$ となる．また，Markovの不等式より
+$P(\|X^{(n)}\|^{2k}>2+\varepsilon)\leq E[\|X^{(n)}\|^{2k}]/(2+\varepsilon)^{2k}$．
+
+ここで $\mathrm{Inv}(2k)=\{\sigma\in S_{2k};\sigma^2=\mathrm{id},[\forall x\in\{1,\ldots,2k\},\sigma(x)\neq x]\}$ （後ろの条件は大体pair partition）として， $f(k,i)=\#\{\sigma\in\mathrm{Inv}(2k)\,\mathrm{s.t.}\,|\gamma|+2i=|\gamma\sigma|+|\sigma|,\gamma=(1\,2\,\ldots\,2k)\in S_{2k}\}$とする．
+
+\begin{lem}
+    $f(k,i+1)\leq k^2f(k,i)$
+\end{lem}
+
+\begin{proof}
+    % 手書きノートの$z=(1\,2\,\ldots\,2k)\in S_{2k}$ だが、latexでは\gammaにしてる
+    $\sigma\in S_{2k}$ をとる．このgenks $g(\sigma)$ によって $|\gamma|+g(\sigma)=|\gamma\sigma|+|\sigma|$．すべてのケーリーグラフ$\{\sigma':|\sigma\sigma'|=1\}$ 内の $\sigma$ のneighborに注目する．もし $g(\sigma)\neq 0$ なら，少なくとも1つのneighborは $g(\sigma')=g(\sigma)$ をみたす．
+\end{proof}
+
+これを使うと，
+
+\begin{equation}
+    \begin{split}
+        P(\|X^{(n)}\|^{2k}>2+\varepsilon)
+        &\leq (2+\varepsilon)^{-2k}\mleft\{n\mathrm{Cat}(k)+n^{-1}k^2\mathrm{Cat}(k)+n^{-3}k^4\mathrm{Cat}(k)+\cdots\mright\}\\
+        &\leq (2+\varepsilon)^{-2k}\mathrm{Cat}(k)\cdot n\mleft\{1+\mleft(\frac{k}{n}\mright)^2+\mleft(\frac{k}{n}\mright)^4+\cdots\mright\}\\
+        &\leq (2+\varepsilon)^{-2k}\mathrm{Cat}(k)\cdot n\cdot 2
+    \end{split}
+\end{equation}
+
+スターリングの公式より $\mathrm{Cat}(k)\sim 4^k k^{-\frac{3}{2}}(1+o(1))$（あるいは $\mathrm{Cat}(k)\leq 4^k/(k+1)$ を用いて　$P(\|X^{(n)}\|^{2k}>2+\varepsilon)\leq (2+\varepsilon)^{-2k}\frac{4^k}{k+1}\cdot n\cdot 2\leq (\frac{2+\varepsilon}{\varepsilon})^{-2k}\frac{2n}{k}$）．
+もし $k\gg\log n$ なら右辺は $0$ に収束する．
+
+\begin{note*}
+    $n\times n$ 複素正方行列 $X$ に対してそのscatter $p$-normは $\|X\|_p=\sqrt[p]{\mathrm{Tr}((XX^*)^{p/2})}$ で定義される．ここで $\|X\|\leq\|X\|_p$ を使う．（ここで$n^{-p}$だけ違うが，$\sqrt[p]{\mathrm{tr}((XX^*)^{p/2})}\leq\|X\|$もまた成り立つ．したがって $n^{-1/p}\|X\|_p\leq\|X\|\leq\|X\|_p$ が成り立つ．） $n^{-1/p}\to 1$ は $p\gg\log n$ と同値．
+\end{note*}
+
+\section{Stieltjes transform}
+
+確率論による一般原理：変換を通した分布の分析．例えば...
+\begin{itemize}
+    \item フーリエ変換： $F_X(t)=E[e^{itX}]$
+    \item ラプラス変換： $L_X(t)=E[e^{tX}]$
+    \item メリン変換： $M_X(t)=\int_{-\infty}^{\infty}e^{itx}dF_X(x)$
+    \item ...
+\end{itemize}
+
+Stieltjes transformはWiegner's semicircular theoremの新たな証明を与えた．
+
+\begin{dfn}
+    実数値確率測度 $\mu$ に対して，そのStieltjes transformは $z\in\mathbb{C}\backslash\mathbb{R}$ に対して
+    \begin{equation}
+        S_\mu(z)=\int\frac{1}{x-z}d\mu(x)
+    \end{equation}
+    で定義される．
+\end{dfn}
+
+$|1/(x-z)|\leq1/|\mathrm{Im}z|$ ならば， $S_\mu$ はwell-definedであり， $|S_\mu(z)\leq 1/|\mathrm{Im}z|$ をみたす．
+
+\begin{note*}
+    歴史的な注意．Cauchy変換
+    \begin{equation}
+        G_\mu(z)=\int_\mathbb{R}\frac{1}{z-x}d\mu(x)
+    \end{equation}
+    とは $G_\mu(z)=-S_\mu(z)$ の関係がある．Stieltjesは確率論を意識してこの関数を定義したが，Cauchyはそのことを考えていたかは不明．
+\end{note*}
+
+$X$ を分布 $\mu$ に従う実数値確率変数とする．また $\mathrm{supp}\mu\subset [-K,K]$ であり $z$ は $|z|>K$ にとることにする．いま $G_\mu(z)$ を
+\begin{equation}
+    G_\mu(z)=\sum_{k=0}^\infty\frac{E[X^k]}{z^{k+1}}
+\end{equation}
+とかく．もし $\mu$ が有界なサポートをもてば，すべてのモーメントは有限である．モーメントは $\mu$ を一意に決定づける．これによって $\int p(x)d\mu(x)$ が計算可能となる．したがってstone-weierstrassの定理によって有界連続な関数 $\rho(x)$ に対して $\int\rho(x)d\mu(x)$ が計算可能となる．ゆえに Risezの表現定理によって $\mu$ は一位に特徴付けられる．
+
+よって， $S_\mu(z)$ は $\mu$ を特徴づける．もし $\mu$ が有界サポートをもつなら $\mu\mapsto S_\mu$ の単射がつくれる．$X$ のモーメントは $z\to\infty$ での $G_\mu=-S_\mu$ のテイラー展開の係数によって決まる．
+
+\begin{note*}
+    もし $\mu$ が単純点測度 $\mu=\sum_{i=1}^\infty \alpha_i\delta_{\lambda_i}$ なら， $\mu$ は容易に $S_\mu$ から回復できる．
+\end{note*}
+
+\begin{example}
+    $\mu=\delta_0/3+\delta_1/3+\delta_2/3$ なら，
+    \begin{equation}
+        S_\mu(z)=\frac{1}{3}\mleft(\frac{1}{z}+\frac{1}{1-z}+\frac{1}{2-z}\mright)
+    \end{equation}
+\end{example}
+
+一般の一意な特徴づけ
+まず，次を考える
+\begin{equation}
+    \mathrm{Im} S_\mu(a+ib)=\pi\mu * P_b(a)
+\end{equation}
+ここで，$P_b(a)$ は $P_b(a)=\frac{1}{\pi}\frac{b}{(a-x)^2+b^2}=\frac{1}{b}P_1\mleft(\frac{a}{b}\mright)$ である．
+
+\begin{example}
+    $d\mu=\rho(x)dx$ とすると $\rho(x)=\lim_{\varepsilon\to+0}\mathrm{Im}\frac{1}{\pi}S_\mu(x+i\varepsilon)$
+\end{example}
+
+$S_\mu$ を半円を示すのにどうやって使うか？
+
+$X_n$を$\mathrm{GUE}(n)$ とする．$z$ を $\mathrm{Im}z>0$ にとる．このとき，
+\begin{equation}
+    s_n(z)\coloneqq E\mleft[\mathrm{tr}((X_n-zI_n)^{-1})\mright]=S_{\mu_n}(z)
+\end{equation}
+
+ここで $\mu_n$ は正規化した期待固有値計数測度
+
+これらを利用して $s_n(z)\to s_{\mu_{\mathrm{sc}}}(z)$ を示す．
+
+メインアイデアは，$X_n$ に対する $s_n(z)$ と，その左上 $(n-1)\times(n-1)$小行列 $\tilde{X}_n$ に対する $s_n(z)$ を比較することである．
+
+Exercise 2.4.11
+
+これを $X=X_n-zI$ に適用して期待値をとると
+
+\begin{equation}
+    s_n(z)=-E\mleft[\frac{1}{z-o(1/\sqrt{n})-B_n^*(\tilde{X}_n-zI_{n-1})B_n}\mright]
+\end{equation}
+
+ここで $E[\mathrm{tr}((X_n-zI_n)^{-1})]=E[((X_n-zI_n)^{-1})_{11}]$ である．
+
+2. 実際に以下を示せる：
+\begin{equation}
+    |B_n^*(\tilde{X}_n-zI_{n-1})B_n-s_n(z)|=o\mleft(\frac{1}{n}\mright)
+\end{equation}
+
+algebric argumentとして $\tilde{\lambda}^{(n)}_1\geq\cdots\geq\tilde{\lambda}^{(n)}_{n-1}$ は $\tilde{X}_n$ の固有値とすると， $\lambda^{(n)}_i\geq\tilde{\lambda}^{(n)}_i\geq\lambda^{(n)}_{i+1}$が成り立つ．
+
+最後に， $B_n$ と $\tilde{X}_n-zI_{n-1}$ が独立であることを使うと $B$ が消える．以上により結局
+\begin{equation}
+    s_n(z)=-\frac{1}{z+s_n(z)}+o(1)
+\end{equation}
+がわかる．$s_n$ は $s_{\mu_{\mathrm{sc}}}(z)=-\frac{1}{z+s_{\mu_{\mathrm{sc}}}(z)}$ の解に収束しなければならない．これで求まる $s(z)$ は，半円分布のStieltjes transformになっている：
+\begin{equation}
+    s_{\mu_{\mathrm{sc}}}(z)=\frac{-z+\sqrt{z^2-4}}{2}
+\end{equation}
+
 \end{document}
